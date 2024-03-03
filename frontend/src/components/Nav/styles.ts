@@ -57,6 +57,24 @@ const StyledNav = styled.nav<NavProps>`
             display: none;
         }
     }
+    @media (max-width: ${variables.smartphone}) {
+        height: auto;
+        position: fixed;
+        bottom: 0;
+        right: 0;
+        left: 0;
+        border-right: none;
+        border-top: 2px solid ${(props) => props.theme.colors.borderColor};
+        padding: .5rem ;
+
+        div {
+            display: none;
+        }
+
+        ul {
+            ${flex('row', 'center', 'center', '1rem')}
+        }
+    }
 `
 
 export default StyledNav
