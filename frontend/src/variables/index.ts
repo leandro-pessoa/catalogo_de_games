@@ -1,4 +1,13 @@
-const variables = {}
+const variables = {
+    // fontes
+    primaryFont: "'Poppins', sans-serif",
+    secondaryFont: "'Silkscreen', sans-serif",
+
+    // cores
+    white: '#fcfcfc',
+    lightGray: '#d4d4d4',
+    darkGray: '#2c2d31',
+}
 
 const flex = (
     direction: string = 'row',

@@ -1,7 +1,11 @@
+// variáveis
+import { variables } from "@/variables"
 
 const lightTheme = {
     colors: {
-
+        backgroundColor: variables.white,
+        borderColor: variables.lightGray,
+        fontColor: variables.darkGray
     }
 }
 
