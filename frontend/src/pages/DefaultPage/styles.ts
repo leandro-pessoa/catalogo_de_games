@@ -4,11 +4,16 @@ import styled from 'styled-components'
 // variáveis
 import { flex } from '@/variables'
 
-const StyledDiv = styled.div`
+// tipagem dos props
+interface DivProps {
+    readonly $display: boolean
+}
+
+const StyledDiv = styled.div<DivProps>`
     ${flex('row', 'auto', 'auto')}
 
     main {
-        width: 80%;
+        width: ${(props) => props.$display ? '80%' : '100%'};
     }
 `
 

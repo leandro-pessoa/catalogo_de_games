@@ -46,7 +46,7 @@ const Nav = () => {
                     </NavLink>
                 </li>
                 <li>
-                    <NavLink to='/a'>
+                    <NavLink to='/novo-jogo'>
                         <IoIosAddCircleOutline size={26} />
                         <span>Novo jogo</span>
                     </NavLink>

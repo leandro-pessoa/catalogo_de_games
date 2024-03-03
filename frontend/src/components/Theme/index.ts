@@ -11,7 +11,9 @@ const lightTheme = {
 
 const darkTheme = {
     colors: {
-
+        backgroundColor: variables.darkGray,
+        borderColor: variables.regularGray,
+        fontColor: variables.white
     }
 }
 
