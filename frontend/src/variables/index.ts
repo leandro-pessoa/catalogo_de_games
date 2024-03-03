@@ -7,6 +7,12 @@ const variables = {
     white: '#fcfcfc',
     lightGray: '#d4d4d4',
     darkGray: '#2c2d31',
+
+    // break-points
+    notebook: '1024px',
+    tablet: '869px',
+    smartphone: '669px',
+    smallSmartphone: '429px'
 }
 
 const flex = (
