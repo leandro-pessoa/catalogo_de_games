@@ -4,7 +4,7 @@ import { useAppDispatch, useAppSelector } from '@/app/hooks'
 import { useState } from 'react'
 
 // componentes
-import Button from "@/components/Button"
+import Button from '@/components/Button'
 import PlataformsList from './PlataformsList'
 
 // ícones
@@ -18,12 +18,12 @@ const Plataforms = () => {
     const dispatch = useAppDispatch()
     const plataforms = useAppSelector(selectPlataforms)
 
-    // states 
+    // states
     const [plataform, setPlataform] = useState<string>('')
 
     // handle para adicionar plataforma
     const addHandle = () => {
-        if(!plataforms.includes(plataform)) {
+        if (!plataforms.includes(plataform) && plataform) {
             dispatch(addPlataform(plataform))
             setPlataform('')
         }

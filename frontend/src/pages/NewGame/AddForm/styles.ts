@@ -13,6 +13,7 @@ const StyledForm = styled.form`
     padding: 2rem 3rem;
     border-left: 6px solid ${variables.red};
     box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.1);
+    margin-bottom: 2rem;
 
     div {
         label {
