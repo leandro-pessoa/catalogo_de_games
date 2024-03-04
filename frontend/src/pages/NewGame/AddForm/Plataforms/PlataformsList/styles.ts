@@ -14,7 +14,7 @@ const StyledUl = styled.ul`
         font-size: 1.1rem;
         background-color: ${(props) => props.theme.colors.fontColor};
         color: ${(props) => props.theme.colors.backgroundColor};
-        padding: 0.5rem;
+        padding: 0.3rem 0.5rem;
     }
 `
 

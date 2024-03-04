@@ -1,7 +1,7 @@
 // funções
 import iconsParams from '@/utils/iconsParams'
 import { useAppDispatch, useAppSelector } from '@/app/hooks'
-import { useState } from 'react'
+import React, { useState } from 'react'
 
 // componentes
 import Button from '@/components/Button'
@@ -21,11 +21,17 @@ const Plataforms = () => {
     // states
     const [plataform, setPlataform] = useState<string>('')
 
-    // handle para adicionar plataforma
-    const addHandle = () => {
+    const add = () => {
         if (!plataforms.includes(plataform) && plataform) {
             dispatch(addPlataform(plataform))
             setPlataform('')
+        }
+    }
+
+    // handle para adicionar plataforma com o enter
+    const keyHandle = (e: React.KeyboardEvent) => {
+        if(e.key === 'Enter') {
+            add()
         }
     }
 
@@ -41,8 +47,9 @@ const Plataforms = () => {
                     placeholder='Digite as plataformas (uma de cada vez)'
                     value={plataform}
                     onChange={(e) => setPlataform(e.target.value)}
+                    onKeyDown={(e) => keyHandle(e)}
                 />
-                <Button onClick={() => addHandle()}>
+                <Button onClick={() => add()}>
                     <IoIosAdd {...iconsParams('dark')} />
                 </Button>
             </div>
