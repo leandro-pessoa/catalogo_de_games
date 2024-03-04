@@ -4,17 +4,21 @@ import styled from 'styled-components'
 // variáveis
 import { variables, flex } from '@/variables'
 
-const StyledButton = styled.button`
+// tipagem dos props
+interface ButtonProps {
+    readonly $bgColor: string
+}
+
+const StyledButton = styled.button<ButtonProps>`
     ${flex('row', 'auto', 'center', '.5rem')}
     width: max-content;
-    background-color: ${variables.red};
+    background-color: ${(props) => props.$bgColor};
     font-family: ${variables.primaryFont};
     font-size: 1.2rem;
     color: ${variables.white};
     border: none;
     padding: 0.3rem 0.5rem;
     transition: 0.1s;
-    margin-top: 1rem;
 
     &:hover {
         cursor: pointer;

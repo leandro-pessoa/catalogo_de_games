@@ -4,9 +4,6 @@ import { createGlobalStyle } from 'styled-components'
 // variáveis
 import { variables } from '@/variables'
 
-// imagens
-import backgroundImg from '/images/background.png'
-
 const GlobalStyles = createGlobalStyle`
     html, body, div, span, applet, object, iframe,
     h1, h2, h3, h4, h5, h6, p, blockquote, pre,
@@ -36,8 +33,6 @@ const GlobalStyles = createGlobalStyle`
     body {
         line-height: 1;
         font-family: ${variables.primaryFont};
-        /* background: url(${backgroundImg}) no-repeat center;
-        background-size: cover; */
         height: 100vh;
         background-color: ${(props) => props.theme.colors.backgroundColor};
         color: ${(props) => props.theme.colors.fontColor};

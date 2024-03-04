@@ -2,7 +2,7 @@
 import styled from 'styled-components'
 
 // variáveis
-import { variables } from '@/variables'
+import { flex, variables } from '@/variables'
 
 const StyledForm = styled.form`
     display: grid;
@@ -24,7 +24,7 @@ const StyledForm = styled.form`
         input {
             background-color: ${(props) => props.theme.colors.backgroundColor};
             border: none;
-            font-size: 1.2rem;
+            font-size: 1.1rem;
             color: ${(props) => props.theme.colors.fontColor};
             font-family: ${variables.primaryFont};
             box-shadow: inset 3px 3px 5px rgba(0, 0, 0, 0.1);
@@ -35,6 +35,18 @@ const StyledForm = styled.form`
                 outline: 2px solid ${variables.red};
             }
         }
+    }
+
+    .form__plataforms-container {
+        grid-column: 1 / 3;
+
+        div {
+            ${flex('row', 'auto', 'center', '1rem')}
+        }
+    }
+
+    .form__btn-container {
+        grid-column: 1 / 3;
     }
 `
 
