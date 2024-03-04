@@ -1,9 +1,12 @@
+// componentes
+import Container from '@/components/Container'
+import AddForm from './AddForm'
 
 const NewGame = () => {
     return (
-        <>
-            Novo jogo
-        </>
+        <Container>
+            <AddForm />
+        </Container>
     )
 }
 

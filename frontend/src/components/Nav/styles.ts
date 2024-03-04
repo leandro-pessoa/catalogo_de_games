@@ -12,7 +12,7 @@ interface NavProps {
 const StyledNav = styled.nav<NavProps>`
     ${flex('column', 'flex-start', 'auto', '1rem')}
     padding: ${(props) => (props.$display ? '2.5rem 3rem' : '2.5rem 2rem')};
-    height: 100vh;
+    height: calc(100vh - 5rem);
     width: ${(props) => (props.$display ? '180px' : 'auto')};
     border-right: 2px solid ${(props) => props.theme.colors.borderColor};
     transition: ease 0.3s;
