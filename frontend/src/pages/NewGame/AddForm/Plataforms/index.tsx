@@ -1,7 +1,6 @@
 // funções
 import iconsParams from '@/utils/iconsParams'
 import { useAppDispatch, useAppSelector } from '@/app/hooks'
-import React, { useState } from 'react'
 
 // componentes
 import Button from '@/components/Button'
@@ -11,27 +10,24 @@ import PlataformsList from './PlataformsList'
 import { IoIosAdd } from 'react-icons/io'
 
 // actions e states globais
-import { addPlataform, selectPlataforms } from '@/app/reducers/games'
+import {
+    addPlataform,
+    selectPlataforms,
+    selectPlataform,
+    setPlataform,
+} from '@/app/reducers/games'
 
 const Plataforms = () => {
     // states globais
     const dispatch = useAppDispatch()
     const plataforms = useAppSelector(selectPlataforms)
+    const plataform = useAppSelector(selectPlataform)
 
-    // states
-    const [plataform, setPlataform] = useState<string>('')
-
-    const add = () => {
+    // handle para adicionar as plataformas
+    const addHandle = () => {
         if (!plataforms.includes(plataform) && plataform) {
             dispatch(addPlataform(plataform))
-            setPlataform('')
-        }
-    }
-
-    // handle para adicionar plataforma com o enter
-    const keyHandle = (e: React.KeyboardEvent) => {
-        if(e.key === 'Enter') {
-            add()
+            dispatch(setPlataform(''))
         }
     }
 
@@ -44,12 +40,11 @@ const Plataforms = () => {
                     id='plataforms'
                     autoComplete='off'
                     maxLength={20}
-                    placeholder='Digite as plataformas (uma de cada vez)'
+                    placeholder='Uma de cada vez'
                     value={plataform}
-                    onChange={(e) => setPlataform(e.target.value)}
-                    onKeyDown={(e) => keyHandle(e)}
+                    onChange={(e) => dispatch(setPlataform(e.target.value))}
                 />
-                <Button onClick={() => add()}>
+                <Button onClick={() => addHandle()}>
                     <IoIosAdd {...iconsParams('dark')} />
                 </Button>
             </div>

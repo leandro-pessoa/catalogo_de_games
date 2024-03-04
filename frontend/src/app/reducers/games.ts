@@ -5,11 +5,13 @@ import { RootState } from '../store'
 // tipagem dos states
 interface GamesStates {
     plataforms: string[]
+    plataform: string
 }
 
 // states
 const initialState: GamesStates = {
     plataforms: [],
+    plataform: ''
 }
 
 const gamesSlice = createSlice({
@@ -24,6 +26,12 @@ const gamesSlice = createSlice({
                 (plataform) => plataform !== action.payload,
             )
         },
+        removeAllPlataforms: (state) => {
+            state.plataforms = []
+        },
+        setPlataform: (state, action: PayloadAction<string>) => {
+            state.plataform = action.payload
+        }
     },
 })
 
@@ -31,7 +39,13 @@ const gamesSlice = createSlice({
 export const gamesReducer = gamesSlice.reducer
 
 // export das actions
-export const { addPlataform, removePlataform } = gamesSlice.actions
+export const {
+    addPlataform,
+    removePlataform,
+    removeAllPlataforms,
+    setPlataform
+} = gamesSlice.actions
 
 // export dos states
 export const selectPlataforms = (state: RootState) => state.games.plataforms
+export const selectPlataform = (state: RootState) => state.games.plataform

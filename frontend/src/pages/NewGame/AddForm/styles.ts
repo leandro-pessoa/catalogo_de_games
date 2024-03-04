@@ -6,7 +6,7 @@ import { flex, variables } from '@/variables'
 
 const StyledForm = styled.form`
     display: grid;
-    grid-template-columns: auto auto;
+    grid-template-columns: auto;
     row-gap: 1.5rem;
     background-color: ${(props) => props.theme.colors.borderColor};
     width: 65%;
@@ -43,11 +43,57 @@ const StyledForm = styled.form`
 
         div {
             ${flex('row', 'auto', 'center', '1rem')}
+
+            button {
+                padding: 0.17rem 0.8rem;
+            }
         }
     }
 
     .form__btn-container {
         grid-column: 1 / 3;
+    }
+
+    ::-webkit-calendar-picker-indicator {
+        filter: ${(props) => props.theme.colors.calendarPicker};
+    }
+
+    @media (max-width: ${variables.notebook}) {
+        div {
+            input {
+                width: 80%;
+            }
+        }
+    }
+    @media (max-width: ${variables.tablet}) {
+        width: 80%;
+    }
+    @media (max-width: ${variables.smartphone}) {
+        ${flex('column', 'center', 'stretch', '1.5rem')}
+        margin-bottom: 4rem;
+        width: 70%;
+
+        div {
+            label {
+                font-size: 1rem;
+            }
+            input {
+                width: calc(100% - 1.4rem) /* padding interno */;
+                font-size: 1rem;
+            }
+        }
+
+        .form__plataforms-container {
+            div {
+                ${flex('column', 'auto', 'flex-start', '1rem')}
+                position: relative;
+
+                button {
+                    position: absolute;
+                    right: 0;
+                }
+            }
+        }
     }
 `
 

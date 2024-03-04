@@ -1,6 +1,8 @@
 // funções
 import iconsParams from '@/utils/iconsParams'
-import React, { useState } from 'react'
+import React, { useMemo, useState } from 'react'
+import { useParams } from 'react-router-dom'
+import { useAppDispatch } from '@/app/hooks'
 
 // componentes
 import StyledForm from './styles'
@@ -10,16 +12,40 @@ import Plataforms from './Plataforms'
 // ícones
 import { IoIosAdd } from 'react-icons/io'
 
+// actions
+import { removeAllPlataforms, setPlataform } from '@/app/reducers/games'
+
 const AddForm = () => {
+    // states globais
+    const dispatch = useAppDispatch()
+
     // states
     const [name, setName] = useState<string>('')
     const [category, setCategory] = useState<string>('')
     const [date, setDate] = useState<string>('')
 
+    // url atual
+    const { pathname } = useParams()
+
+    // limpa todos os campos
+    const cleanAll = () => {
+        setName('')
+        setCategory('')
+        setDate('')
+        dispatch(removeAllPlataforms())
+        dispatch(setPlataform(''))
+    }
+
     // handle do formulário
     const submitHandle = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault()
+        cleanAll()
     }
+
+    useMemo(() => {
+        cleanAll()
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [pathname])
 
     return (
         <StyledForm onSubmit={submitHandle}>

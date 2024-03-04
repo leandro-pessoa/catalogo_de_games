@@ -28,6 +28,13 @@ const StyledButton = styled.button<ButtonProps>`
         transform: translate(1px, 1px);
         background-color: ${variables.red}ea;
     }
+
+    @media (max-width: ${variables.tablet}) {
+        font-size: 1.1rem;
+    }
+    @media (max-width: ${variables.smartphone}) {
+        font-size: 1rem;
+    }
 `
 
 export default StyledButton
