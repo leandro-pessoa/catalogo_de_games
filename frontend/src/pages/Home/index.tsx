@@ -1,9 +1,12 @@
+// componentes
+import Container from "@/components/Container"
+import GamesList from "./GamesList"
 
 const Home = () => {
     return (
-        <>
-            Home
-        </>
+        <Container>
+            <GamesList />
+        </Container>
     )
 }
 

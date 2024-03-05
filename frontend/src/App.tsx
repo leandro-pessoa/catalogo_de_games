@@ -12,6 +12,9 @@ import { selectTheme } from './app/reducers/app'
 // temas
 import { darkTheme, lightTheme } from './components/Theme'
 
+// estilos do toastify
+import 'react-toastify/dist/ReactToastify.css'
+
 const App = () => {
     // states globais
     const theme = useAppSelector(selectTheme)

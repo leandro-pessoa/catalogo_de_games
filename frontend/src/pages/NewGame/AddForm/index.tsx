@@ -2,7 +2,8 @@
 import iconsParams from '@/utils/iconsParams'
 import React, { useMemo, useState } from 'react'
 import { useParams } from 'react-router-dom'
-import { useAppDispatch } from '@/app/hooks'
+import { useAppDispatch, useAppSelector } from '@/app/hooks'
+import { v4 as uuidv4 } from 'uuid'
 
 // componentes
 import StyledForm from './styles'
@@ -12,12 +13,24 @@ import Plataforms from './Plataforms'
 // ícones
 import { IoIosAdd } from 'react-icons/io'
 
-// actions
-import { removeAllPlataforms, setPlataform } from '@/app/reducers/games'
+// actions e states globais
+import {
+    removeAllPlataforms,
+    setPlataform,
+    addGame,
+    selectPlataforms,
+    selectGames,
+} from '@/app/reducers/games'
+
+// tipagens externas
+import { IGame } from '@/interfaces/IGame'
+import { success, error } from '@/utils/feedbacks'
 
 const AddForm = () => {
     // states globais
     const dispatch = useAppDispatch()
+    const plataforms = useAppSelector(selectPlataforms)
+    const games = useAppSelector(selectGames)
 
     // states
     const [name, setName] = useState<string>('')
@@ -39,6 +52,25 @@ const AddForm = () => {
     // handle do formulário
     const submitHandle = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault()
+        const gamesNames = games.map((game) => game.name)
+
+
+        if (plataforms.length === 0) {
+            error('Adicione ao menos uma plataforma.')
+        }
+        if(gamesNames.includes(name)) {
+            error('Esse jogo já foi adicionado.')
+        }
+
+        const game: IGame = {
+            id: uuidv4(),
+            name: name,
+            category: category,
+            publish: date,
+            plataforms: plataforms,
+        }
+        dispatch(addGame(game))
+        success('Novo jogo adicionado!')
         cleanAll()
     }
 
@@ -55,10 +87,11 @@ const AddForm = () => {
                     type='text'
                     id='name'
                     autoComplete='off'
-                    maxLength={20}
+                    maxLength={15}
                     placeholder='Digite o nome'
                     value={name}
                     onChange={(e) => setName(e.target.value)}
+                    required
                 />
             </div>
             <div>
@@ -67,10 +100,11 @@ const AddForm = () => {
                     type='text'
                     id='category'
                     autoComplete='off'
-                    maxLength={20}
+                    maxLength={15}
                     placeholder='Digite a categoria'
                     value={category}
                     onChange={(e) => setCategory(e.target.value)}
+                    required
                 />
             </div>
             <div>
@@ -81,6 +115,7 @@ const AddForm = () => {
                     autoComplete='off'
                     value={date}
                     onChange={(e) => setDate(e.target.value)}
+                    required
                 />
             </div>
             <Plataforms />

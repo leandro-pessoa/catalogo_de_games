@@ -1,17 +1,20 @@
 // funções e tipagens
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 import { RootState } from '../store'
+import { IGame } from '@/interfaces/IGame'
 
 // tipagem dos states
 interface GamesStates {
     plataforms: string[]
-    plataform: string
+    plataform: string,
+    games: IGame[]
 }
 
 // states
 const initialState: GamesStates = {
     plataforms: [],
-    plataform: ''
+    plataform: '',
+    games: []
 }
 
 const gamesSlice = createSlice({
@@ -31,6 +34,9 @@ const gamesSlice = createSlice({
         },
         setPlataform: (state, action: PayloadAction<string>) => {
             state.plataform = action.payload
+        },
+        addGame: (state, action: PayloadAction<IGame>) => {
+            state.games = [...state.games, action.payload]
         }
     },
 })
@@ -43,9 +49,11 @@ export const {
     addPlataform,
     removePlataform,
     removeAllPlataforms,
-    setPlataform
+    setPlataform,
+    addGame
 } = gamesSlice.actions
 
 // export dos states
 export const selectPlataforms = (state: RootState) => state.games.plataforms
 export const selectPlataform = (state: RootState) => state.games.plataform
+export const selectGames = (state: RootState) => state.games.games
