@@ -39,7 +39,7 @@ const Plataforms = () => {
                     type='text'
                     id='plataforms'
                     autoComplete='off'
-                    maxLength={20}
+                    maxLength={12}
                     placeholder='Uma de cada vez'
                     value={plataform}
                     onChange={(e) => dispatch(setPlataform(e.target.value))}
