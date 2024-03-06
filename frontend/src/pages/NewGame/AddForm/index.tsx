@@ -37,6 +37,9 @@ const AddForm = () => {
     const [category, setCategory] = useState<string>('')
     const [date, setDate] = useState<string>('')
 
+    // constantes utilizadas
+    const maxDate = new Date().toISOString().split('T')[0]
+
     // url atual
     const { pathname } = useParams()
 
@@ -58,7 +61,7 @@ const AddForm = () => {
             error('Adicione ao menos uma plataforma.')
             return
         }
-        if(gamesNames.includes(name)) {
+        if (gamesNames.includes(name)) {
             error('Esse jogo já foi adicionado.')
             return
         }
@@ -117,6 +120,8 @@ const AddForm = () => {
                     value={date}
                     onChange={(e) => setDate(e.target.value)}
                     required
+                    min='1900-01-01'
+                    max={maxDate}
                 />
             </div>
             <Plataforms />

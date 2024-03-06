@@ -28,7 +28,7 @@ const StyledHeader = styled.header`
     }
     @media (max-width: ${variables.smartphone}) {
         padding: 0.5rem 2rem;
-        margin-bottom: 2rem;
+        margin-bottom: 1rem;
 
         div {
             h1 {

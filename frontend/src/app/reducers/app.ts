@@ -8,12 +8,16 @@ import getTheme from '@/utils/getTheme'
 interface AppStates {
     theme: string
     navDisplay: boolean
+    modalDisplay: boolean
+    modalType: string
 }
 
 // declaração dos states
 const initialState: AppStates = {
     theme: getTheme(),
     navDisplay: true,
+    modalDisplay: false,
+    modalType: ''
 }
 
 const appSlice = createSlice({
@@ -27,6 +31,12 @@ const appSlice = createSlice({
         changeNavDisplay: (state, action: PayloadAction<boolean>) => {
             state.navDisplay = action.payload
         },
+        changeModalDisplay: (state, action: PayloadAction<boolean>) => {
+            state.modalDisplay = action.payload
+        },
+        changeModalType: (state, action: PayloadAction<string>) => {
+            state.modalType = action.payload
+        }
     },
 })
 
@@ -34,8 +44,11 @@ const appSlice = createSlice({
 export const appReducer = appSlice.reducer
 
 // export das actions
-export const { toggleTheme, changeNavDisplay } = appSlice.actions
+export const { toggleTheme, changeNavDisplay, changeModalDisplay, changeModalType } =
+    appSlice.actions
 
 // export dos states
 export const selectTheme = (state: RootState) => state.app.theme
 export const selectNavDisplay = (state: RootState) => state.app.navDisplay
+export const selectModalDisplay = (state: RootState) => state.app.modalDisplay
+export const selectModalType = (state: RootState) => state.app.modalType

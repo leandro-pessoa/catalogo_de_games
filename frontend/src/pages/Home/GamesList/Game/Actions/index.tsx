@@ -1,5 +1,5 @@
 // funções
-import { useAppSelector } from '@/app/hooks'
+import { useAppDispatch, useAppSelector } from '@/app/hooks'
 
 // componentes
 import StyledDiv from './styles'
@@ -11,22 +11,32 @@ import { MdEdit } from 'react-icons/md'
 // states globais
 import { selectTheme } from '@/app/reducers/app'
 
+// actions
+import { changeModalDisplay, changeModalType } from '@/app/reducers/app'
+
 // variáveis
 import { variables } from '@/variables'
 
 const Actions = () => {
     // states globais
     const theme = useAppSelector(selectTheme)
+    const dispatch = useAppDispatch()
 
     const iconsColor = theme === 'dark' ? variables.white : variables.darkGray
+
+    // handle para abrir o modal de exclusão
+    const deleteHandle = () => {
+        dispatch(changeModalType('delete'))
+        dispatch(changeModalDisplay(true))
+    }
 
     return (
         <StyledDiv>
             <button>
-                <MdEdit color={iconsColor}/>
+                <MdEdit color={iconsColor} />
             </button>
-            <button>
-                <IoMdTrash color={iconsColor}/>
+            <button onClick={() => deleteHandle()}>
+                <IoMdTrash color={iconsColor} />
             </button>
         </StyledDiv>
     )

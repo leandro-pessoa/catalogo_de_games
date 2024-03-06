@@ -6,9 +6,9 @@ import { flex, variables } from '@/variables'
 
 const StyledDiv = styled.div`
     ${flex('row', 'center')}
-    max-height: 350px;
-    overflow-y: auto;
     width: 80%;
+    max-height: 350px;
+    overflow: auto;
 
     @media (max-width: ${variables.notebook}) {
         width: 90%;
@@ -18,6 +18,7 @@ const StyledDiv = styled.div`
     }
     @media (max-width: ${variables.smartphone}) {
         width: 100%;
+        max-height: 300px;
     }
 `
 
@@ -29,10 +30,15 @@ const StyledTable = styled.table`
         background-color: ${(props) => props.theme.colors.borderColor};
         position: sticky;
         top: 0;
-        z-index: 10;
 
         th {
             padding: 0.7rem 0;
+        }
+    }
+
+    tbody {
+        td {
+            vertical-align: middle;
         }
     }
 
@@ -75,23 +81,4 @@ const StyledTable = styled.table`
     }
 `
 
-const StyledH2 = styled.h2`
-    ${flex('row', 'center', 'center')}
-    font-size: 1.6rem;
-    padding-bottom: 0.5rem;
-    border-bottom: 2px solid ${variables.red};
-    text-align: center;
-
-    @media (max-width: ${variables.notebook}) {
-        font-size: 1.4rem;
-    }
-    @media (max-width: ${variables.tablet}) {
-        font-size: 1.3rem;
-    }
-    @media (max-width: ${variables.smartphone}) {
-        font-size: 1.1rem;
-        height: 50vh;
-    }
-`
-
-export { StyledDiv, StyledTable, StyledH2 }
+export { StyledDiv, StyledTable }
