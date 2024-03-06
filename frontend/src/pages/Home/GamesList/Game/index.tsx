@@ -1,7 +1,7 @@
 // componentes
 import StyledTr from './styles'
-import PlataformsDropdown from './PlataformsDropdown'
 import Actions from './Actions'
+import Dropdown from '@/components/Dropdown'
 
 // tipagem dos props
 interface GameProps {
@@ -12,15 +12,22 @@ interface GameProps {
 }
 
 const Game = ({ name, category, publish, plataforms }: GameProps) => {
+    // formatação da data
     const formattedPublish = new Date(publish).toLocaleDateString()
 
     return (
         <StyledTr>
             <td>{name}</td>
-            <td>{category}</td>
+            <td>
+                {category.length > 10 ? (
+                    <Dropdown element={category} />
+                ) : (
+                    <span>{category}</span>
+                )}
+            </td>
             <td>{formattedPublish}</td>
             <td>
-                <PlataformsDropdown plataforms={plataforms} />
+                <Dropdown element={plataforms} />
             </td>
             <td>
                 <Actions />

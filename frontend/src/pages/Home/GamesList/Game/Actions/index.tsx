@@ -1,5 +1,4 @@
 // funções
-import iconsParams from '@/utils/iconsParams'
 import { useAppSelector } from '@/app/hooks'
 
 // componentes
@@ -12,16 +11,22 @@ import { MdEdit } from 'react-icons/md'
 // states globais
 import { selectTheme } from '@/app/reducers/app'
 
+// variáveis
+import { variables } from '@/variables'
+
 const Actions = () => {
+    // states globais
     const theme = useAppSelector(selectTheme)
+
+    const iconsColor = theme === 'dark' ? variables.white : variables.darkGray
 
     return (
         <StyledDiv>
             <button>
-                <MdEdit {...iconsParams(theme)} size={20} />
+                <MdEdit color={iconsColor}/>
             </button>
             <button>
-                <IoMdTrash {...iconsParams(theme)} size={20} />
+                <IoMdTrash color={iconsColor}/>
             </button>
         </StyledDiv>
     )

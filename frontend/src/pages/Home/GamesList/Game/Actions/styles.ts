@@ -9,18 +9,29 @@ const StyledDiv = styled.div`
     button {
         background-color: transparent;
         border: none;
-        transition: .1s;
+        transition: 0.1s;
+        font-size: 1.2rem;
 
         &:hover {
             cursor: pointer;
         }
         &:active {
-            transform: translate(.5px, .5px);
+            transform: translate(0.5px, 0.5px);
         }
     }
 
     @media (max-width: ${variables.notebook}) {
         gap: 0;
+    }
+    @media (max-width: ${variables.smartphone}) {
+        button {
+            font-size: 0.9rem;
+        }
+    }
+    @media (max-width: ${variables.smallSmartphone}) {
+        button {
+            font-size: 0.8rem;
+        }
     }
 `
 

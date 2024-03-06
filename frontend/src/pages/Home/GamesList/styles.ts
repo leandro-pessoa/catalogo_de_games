@@ -36,6 +36,14 @@ const StyledTable = styled.table`
             font-size: 0.7rem;
         }
     }
+    @media (max-width: ${variables.smallSmartphone}) {
+        width: 100%;
+        font-size: 0.5rem;
+
+        button {
+            font-size: 0.5rem;
+        }
+    }
 `
 
 const StyledH2 = styled.h2`
