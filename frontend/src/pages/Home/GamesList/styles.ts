@@ -4,12 +4,32 @@ import styled from 'styled-components'
 // variáveis
 import { flex, variables } from '@/variables'
 
+const StyledDiv = styled.div`
+    ${flex('row', 'center')}
+    max-height: 350px;
+    overflow-y: auto;
+    width: 80%;
+
+    @media (max-width: ${variables.notebook}) {
+        width: 90%;
+    }
+    @media (max-width: ${variables.tablet}) {
+        width: 95%;
+    }
+    @media (max-width: ${variables.smartphone}) {
+        width: 100%;
+    }
+`
+
 const StyledTable = styled.table`
-    width: 85%;
-    overflow-x: auto;
+    width: 100%;
+    font-size: 1rem;
 
     thead {
         background-color: ${(props) => props.theme.colors.borderColor};
+        position: sticky;
+        top: 0;
+        z-index: 10;
 
         th {
             padding: 0.7rem 0;
@@ -20,8 +40,11 @@ const StyledTable = styled.table`
         font-size: 1rem;
     }
 
+    svg {
+        font-size: 20px;
+    }
+
     @media (max-width: ${variables.notebook}) {
-        width: 97%;
         font-size: 0.9rem;
 
         button {
@@ -29,19 +52,25 @@ const StyledTable = styled.table`
         }
     }
     @media (max-width: ${variables.smartphone}) {
-        width: 100%;
         font-size: 0.7rem;
 
         button {
             font-size: 0.7rem;
         }
+
+        svg {
+            font-size: 16px;
+        }
     }
     @media (max-width: ${variables.smallSmartphone}) {
-        width: 100%;
-        font-size: 0.5rem;
+        font-size: 0.6rem;
 
         button {
-            font-size: 0.5rem;
+            font-size: 0.6rem;
+        }
+
+        svg {
+            font-size: 14px;
         }
     }
 `
@@ -65,4 +94,4 @@ const StyledH2 = styled.h2`
     }
 `
 
-export { StyledTable, StyledH2 }
+export { StyledDiv, StyledTable, StyledH2 }

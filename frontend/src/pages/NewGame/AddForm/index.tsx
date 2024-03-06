@@ -54,12 +54,13 @@ const AddForm = () => {
         e.preventDefault()
         const gamesNames = games.map((game) => game.name)
 
-
         if (plataforms.length === 0) {
             error('Adicione ao menos uma plataforma.')
+            return
         }
         if(gamesNames.includes(name)) {
             error('Esse jogo já foi adicionado.')
+            return
         }
 
         const game: IGame = {

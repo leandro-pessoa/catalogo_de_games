@@ -52,6 +52,16 @@ const GlobalStyles = createGlobalStyle`
         border-collapse: collapse;
         border-spacing: 0;
     }
+
+    /* scrollbar */
+    ::-webkit-scrollbar {
+        background-color: ${(props) => props.theme.colors.backgroundColor};
+        width: 6px;
+    }
+    ::-webkit-scrollbar-thumb {
+        background-color: ${variables.red};
+        border-radius: 4px;
+    }
 `
 
 export default GlobalStyles

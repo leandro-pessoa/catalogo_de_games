@@ -1,17 +1,15 @@
 // funções
 import styled from 'styled-components'
 
+// variáveis
+import { variables } from '@/variables'
+
 const StyledTr = styled.tr`
     td {
-        border-top: 2px solid red;
-        border-bottom: 2px solid ${(props) => props.theme.colors.borderColor};
+        border-bottom: 2px solid ${variables.red};
         padding: 1rem 0;
         text-align: center;
         word-wrap: break-word;
-
-        :first-child {
-            border-top: none;
-        }
     }
 `
 

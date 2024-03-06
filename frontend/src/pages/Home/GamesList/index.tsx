@@ -2,7 +2,7 @@
 import { useAppSelector } from '@/app/hooks'
 
 // componentes
-import { StyledTable, StyledH2 } from './styles'
+import { StyledDiv, StyledTable, StyledH2 } from './styles'
 import Game from './Game'
 
 // states globais
@@ -13,7 +13,7 @@ const GamesList = () => {
     const games = useAppSelector(selectGames)
 
     return (
-        <>
+        <StyledDiv>
             {games.length >= 1 ? (
                 <StyledTable>
                     <thead>
@@ -34,7 +34,7 @@ const GamesList = () => {
             ) : (
                 <StyledH2>Não há jogos inseridos na lista</StyledH2>
             )}
-        </>
+        </StyledDiv>
     )
 }
 

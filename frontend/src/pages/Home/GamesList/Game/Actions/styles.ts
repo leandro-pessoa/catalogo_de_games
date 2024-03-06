@@ -10,7 +10,7 @@ const StyledDiv = styled.div`
         background-color: transparent;
         border: none;
         transition: 0.1s;
-        font-size: 1.2rem;
+        font-size: 20px;
 
         &:hover {
             cursor: pointer;
@@ -25,12 +25,12 @@ const StyledDiv = styled.div`
     }
     @media (max-width: ${variables.smartphone}) {
         button {
-            font-size: 0.9rem;
+            font-size: 16px;
         }
     }
     @media (max-width: ${variables.smallSmartphone}) {
         button {
-            font-size: 0.8rem;
+            font-size: 12px;
         }
     }
 `
