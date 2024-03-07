@@ -6,7 +6,7 @@ import StyledUl from "./styles"
 import Button from '@/components/Button'
 
 // states globais e actions
-import { removePlataform, selectPlataforms } from "@/app/reducers/games"
+import { removePlataform, selectPlataforms } from "@/app/reducers/plataform"
 
 // ícones
 import { IoCloseOutline } from 'react-icons/io5'

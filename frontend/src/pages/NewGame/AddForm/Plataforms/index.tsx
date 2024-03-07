@@ -15,7 +15,7 @@ import {
     selectPlataforms,
     selectPlataform,
     setPlataform,
-} from '@/app/reducers/games'
+} from '@/app/reducers/plataform'
 
 const Plataforms = () => {
     // states globais

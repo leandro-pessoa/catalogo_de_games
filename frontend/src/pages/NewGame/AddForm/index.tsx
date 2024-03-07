@@ -17,10 +17,9 @@ import { IoIosAdd } from 'react-icons/io'
 import {
     removeAllPlataforms,
     setPlataform,
-    addGame,
     selectPlataforms,
-    selectGames,
-} from '@/app/reducers/games'
+} from '@/app/reducers/plataform'
+import { addGame, selectGames } from '@/app/reducers/games'
 
 // tipagens externas
 import { IGame } from '@/interfaces/IGame'

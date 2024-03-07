@@ -16,9 +16,10 @@ interface ModalProps {
         | string
         | (string | React.ReactElement)[]
     action: () => void
+    title: string
 }
 
-const Modal = ({ children, action }: ModalProps) => {
+const Modal = ({ children, action, title }: ModalProps) => {
     // states globais
     const dispatch = useAppDispatch()
     const modalDisplay = useAppSelector(selectModalDisplay) 
@@ -29,8 +30,9 @@ const Modal = ({ children, action }: ModalProps) => {
                 className='modal__overlay'
                 onClick={() => dispatch(changeModalDisplay(false))}
             ></div>
-            <div className='modal__content'>
-                {children}
+            <div className='modal__container'>
+                <h2>{title}</h2>
+                <div className='modal__content'>{children}</div>
                 <div className='modal__btn-container'>
                     <Button onClick={() => dispatch(changeModalDisplay(false))}>
                         Cancelar
