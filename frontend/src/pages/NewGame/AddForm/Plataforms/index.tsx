@@ -25,9 +25,17 @@ const Plataforms = () => {
 
     // handle para adicionar as plataformas
     const addHandle = () => {
-        if (!plataforms.includes(plataform) && plataform) {
+        if (!plataforms.includes(plataform) && plataform.trim()) {
             dispatch(addPlataform(plataform))
             dispatch(setPlataform(''))
+        }
+    }
+
+    // handle para adicionar plataforma com o Enter
+    const keyboardHandle = (e: React.KeyboardEvent) => {
+        if(e.key === 'Enter') {
+            addHandle()
+            e.preventDefault()
         }
     }
 
@@ -43,6 +51,7 @@ const Plataforms = () => {
                     placeholder='Uma de cada vez'
                     value={plataform}
                     onChange={(e) => dispatch(setPlataform(e.target.value))}
+                    onKeyDown={(e) => keyboardHandle(e)}
                 />
                 <Button onClick={() => addHandle()}>
                     <IoIosAdd {...iconsParams('dark')} />

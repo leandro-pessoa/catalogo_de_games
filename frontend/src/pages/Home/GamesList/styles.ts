@@ -30,6 +30,7 @@ const StyledTable = styled.table`
         background-color: ${(props) => props.theme.colors.borderColor};
         position: sticky;
         top: 0;
+        z-index: 10;
 
         th {
             padding: 0.7rem 0;

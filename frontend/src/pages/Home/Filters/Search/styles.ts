@@ -1,6 +1,8 @@
 // funções
-import { variables } from '@/variables'
 import styled from 'styled-components'
+
+// variáveis
+import { variables } from '@/variables'
 
 const StyledInput = styled.input`
     background-color: ${(props) => props.theme.colors.borderColor};

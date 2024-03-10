@@ -6,11 +6,13 @@ import { IGame } from '@/interfaces/IGame'
 // tipagem dos states
 interface GamesStates {
     games: IGame[]
+    removingGame: IGame | undefined
 }
 
 // states
 const initialState: GamesStates = {
-    games: []
+    games: [],
+    removingGame: undefined
 }
 
 const gamesSlice = createSlice({
@@ -22,6 +24,9 @@ const gamesSlice = createSlice({
         },
         removeGame: (state, action: PayloadAction<string>) => {
             state.games = state.games.filter((game) => game.id !== action.payload)
+        },
+        setRemovingGame: (state, action: PayloadAction<IGame | undefined>) => {
+            state.removingGame = action.payload
         }
     },
 })
@@ -32,8 +37,10 @@ export const gamesReducer = gamesSlice.reducer
 // export das actions
 export const {
     addGame,
-    removeGame
+    removeGame,
+    setRemovingGame
 } = gamesSlice.actions
 
 // export dos states
 export const selectGames = (state: RootState) => state.games.games
+export const selectRemovingGame = (state: RootState) => state.games.removingGame

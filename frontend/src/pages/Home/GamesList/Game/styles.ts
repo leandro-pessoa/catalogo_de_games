@@ -9,7 +9,6 @@ const StyledTr = styled.tr`
         border-bottom: 2px solid ${variables.red};
         padding: 1rem 0;
         text-align: center;
-        word-wrap: break-word;
     }
 `
 

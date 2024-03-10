@@ -16,6 +16,7 @@ const StyledForm = styled.form`
     margin-bottom: 2rem;
 
     div {
+        width: 100%;
         label {
             display: block;
             margin-bottom: 0.5rem;
