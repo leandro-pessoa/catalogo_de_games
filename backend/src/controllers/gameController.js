@@ -1,33 +1,41 @@
 import Game from '../db/models/Game.js'
+import NotFound from '../errors/NotFound.js'
 
 class GameController {
 
     // GET
-    static async listGames(req, res) {
+    static async listGames(req, res, next) {
         try {
             const games = await Game.find({})
-            res.status(200).json(games)
+            if(games) {
+                res.status(200).json(games)
+            } else {
+                next(new NotFound('Nenhum jogo foi encontrado.'))
+            }
         } catch (err) {
-            console.log(err)
+            next(err)
         }
     }
 
-    static async listGameById(req, res) {
+    static async listGameById(req, res, next) {
         try {
             const { id } = req.params
             const game = await Game.findById(id)
-            res.status(200).json({
-                game: game
-            })
+            if(game) {
+                res.status(200).json({
+                    game: game,
+                })
+            } else {
+                next(new NotFound('Jogo não encontrado.'))
+            }
+            
         } catch (err) {
-            res.status(500).json({
-                message: 'Erro interno do servidor.'
-            })
+            next(err)
         }
     }
 
     // POST
-    static async addGame(req, res) {
+    static async addGame(req, res, next) {
         try {
             const newGame = await Game.create(req.body)
             res.status(201).json({
@@ -35,15 +43,12 @@ class GameController {
                 game: newGame
             })
         } catch (err) {
-            res.status(500).json({
-                message: 'Erro interno do servidor.'
-            })
-            console.log(err)
+            next(err)
         }
     }
 
     // PUT
-    static async updateGame(req, res) {
+    static async updateGame(req, res, next) {
         try {
             const { id } = req.params
             const updatedGame = await Game.findByIdAndUpdate(id, req.body)
@@ -52,14 +57,12 @@ class GameController {
                 game: updatedGame
             })
         } catch (err) {
-            res.status(500).json({
-                message: 'Erro interno do servidor.'
-            })
+            next(err)
         }
     }
 
     // DELETE
-    static async deleteGame(req, res) {
+    static async deleteGame(req, res, next) {
         try {
             const { id } = req.params
             const game = await Game.findById(id)
@@ -68,9 +71,7 @@ class GameController {
                 message: `O jogo ${game.name} foi deletado.`
             })
         } catch (err) {
-            res.status(500).json({
-                message: 'Erro interno do servidor.'
-            })
+            next(err)
         }
     }
 }
