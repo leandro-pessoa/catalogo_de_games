@@ -1,13 +1,10 @@
 // funções e tipagens
-import {
-    createAsyncThunk,
-    createSlice,
-    PayloadAction,
-} from '@reduxjs/toolkit'
+import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit'
 import { RootState } from '../store'
 import { IGame } from '@/interfaces/IGame'
 import { error } from '@/utils/feedbacks'
-import http from '../http'
+import http from '@/http'
+
 
 // tipagem dos states
 interface GamesStates {

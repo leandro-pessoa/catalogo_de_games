@@ -1,6 +1,6 @@
 
 export interface IGame {
-    _id: string
+    _id?: string
     name: string
     category: string
     publish: string

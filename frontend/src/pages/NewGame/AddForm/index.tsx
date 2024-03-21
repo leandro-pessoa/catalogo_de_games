@@ -3,6 +3,7 @@ import iconsParams from '@/utils/iconsParams'
 import React, { useMemo, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import { useAppDispatch, useAppSelector } from '@/app/hooks'
+import http from '@/http'
 
 // componentes
 import StyledForm from './styles'
@@ -65,14 +66,15 @@ const AddForm = () => {
         }
 
         const game: IGame = {
-            _id: '',
             name: name,
             category: category,
             publish: date,
             plataforms: plataforms,
         }
         dispatch(addGame(game))
-        success('Novo jogo adicionado!')
+        http.post('/games', { ...game }).then(() =>
+            success('Novo jogo adicionado!'),
+        )
         cleanAll()
     }
 
