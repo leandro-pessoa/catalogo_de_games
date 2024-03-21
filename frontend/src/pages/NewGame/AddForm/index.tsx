@@ -3,7 +3,6 @@ import iconsParams from '@/utils/iconsParams'
 import React, { useMemo, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import { useAppDispatch, useAppSelector } from '@/app/hooks'
-import { v4 as uuidv4 } from 'uuid'
 
 // componentes
 import StyledForm from './styles'
@@ -66,7 +65,7 @@ const AddForm = () => {
         }
 
         const game: IGame = {
-            id: uuidv4(),
+            _id: '',
             name: name,
             category: category,
             publish: date,

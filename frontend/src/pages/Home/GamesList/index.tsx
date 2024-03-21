@@ -5,7 +5,7 @@ import { useAppSelector } from '@/app/hooks'
 import { StyledDiv, StyledTable } from './styles'
 import Game from './Game'
 
-// states globais
+// states globais e actions
 import { selectGames } from '@/app/reducers/games'
 
 const GamesList = () => {
@@ -26,7 +26,7 @@ const GamesList = () => {
                 </thead>
                 <tbody>
                     {games.map((game) => (
-                        <Game {...game} key={game.id} />
+                        <Game {...game} key={game._id} />
                     ))}
                 </tbody>
             </StyledTable>

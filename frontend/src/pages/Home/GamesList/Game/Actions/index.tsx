@@ -33,7 +33,7 @@ const Actions = ({ gameId }: ActionsProps) => {
 
     // handle para abrir o modal de exclusão
     const deleteHandle = () => {
-        const removingGame = games.find((game) => game.id === gameId)
+        const removingGame = games.find((game) => game._id === gameId)
 
         dispatch(changeModalType('delete'))
         dispatch(setRemovingGame(removingGame))

@@ -7,6 +7,7 @@ interface ContainerProps {
         | React.ReactElement
         | React.ReactElement[]
         | (string | React.ReactElement[])
+        | (string | undefined)
 }
 
 const Container = ({ children }: ContainerProps) => {
