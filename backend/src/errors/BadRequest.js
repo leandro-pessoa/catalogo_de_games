@@ -1,7 +1,7 @@
 import BaseError from './BaseError.js'
 
 class BadRequest extends BaseError {
-    constructor(msg = 'Os dados foram inseridos de forma incorreta.') {
+    constructor(msg = 'Requisição incorreta.') {
         super(msg, 400)
     }
 }

@@ -1,6 +1,6 @@
 // funções
 import { useAppDispatch, useAppSelector } from '@/app/hooks'
-import { success } from '@/utils/feedbacks'
+import { error, success } from '@/utils/feedbacks'
 import http from '@/http'
 
 // componentes
@@ -17,11 +17,15 @@ const Delete = () => {
 
     const deleteHandle = () => {
         if (removingGame) {
-            http.delete(`/games/${removingGame._id}`).then(() => {
-                dispatch(removeGame(removingGame.id))
-                dispatch(changeModalDisplay(false))
-                success(`${removingGame.name} removido com sucesso!`)
-            })
+            http.delete(`/games/${removingGame._id}`)
+                .then((res) => {
+                    dispatch(removeGame(removingGame.id))
+                    dispatch(changeModalDisplay(false))
+                    success(res.data.message)
+                })
+                .catch((err) => {
+                    error(err.response.data.message)
+                })
         }
     }
 

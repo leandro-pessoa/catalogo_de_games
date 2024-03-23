@@ -6,20 +6,20 @@ const GameSchema = mongoose.Schema({
     },
     name: {
         type: String,
-        required: [true, 'Insira o nome do jogo'],
+        required: [true, 'Insira o nome do jogo.'],
     },
     category: {
         type: String,
-        required: [true, 'Insira uma categoria'],
+        required: [true, 'Insira uma categoria.'],
     },
     publish: {
         type: Date,
-        required: [true, 'Insira a data de lançamento']
+        required: [true, 'Insira a data de lançamento.'],
     },
     plataforms: {
         type: Array,
-        required: [true, 'Insira ao menos uma plataforma']
-    }
+        required: [true, 'Insira ao menos uma plataforma.'],
+    },
 })
 
 const Game = mongoose.model('Game', GameSchema)

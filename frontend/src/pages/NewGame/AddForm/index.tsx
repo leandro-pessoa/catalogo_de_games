@@ -20,7 +20,7 @@ import {
     setPlataform,
     selectPlataforms,
 } from '@/app/reducers/plataform'
-import { addGame, fetchGames, selectGames } from '@/app/reducers/games'
+import { addGame, selectGames } from '@/app/reducers/games'
 
 // tipagens externas
 import { IGame } from '@/interfaces/IGame'
@@ -74,11 +74,12 @@ const AddForm = () => {
             plataforms: plataforms,
         }
 
-        http.post('/games', { ...game }).then(() => {
-            dispatch(addGame(game))
-            success('Novo jogo adicionado!')
-            dispatch(fetchGames())
+        http.post('/games', { ...game }).then((res) => {
+            dispatch(addGame(res.data.game))
+            success(res.data.message)
             cleanAll()
+        }).catch((err) => {
+            error(err.response.data.message)
         })
     }
 
