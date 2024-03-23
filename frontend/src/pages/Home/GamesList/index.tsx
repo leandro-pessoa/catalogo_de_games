@@ -26,7 +26,7 @@ const GamesList = () => {
                 </thead>
                 <tbody>
                     {games.map((game) => (
-                        <Game {...game} key={game._id} />
+                        <Game {...game} key={game.id} />
                     ))}
                 </tbody>
             </StyledTable>

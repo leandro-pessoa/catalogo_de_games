@@ -1,9 +1,10 @@
 // funções
 import { useAppDispatch, useAppSelector } from '@/app/hooks'
 import { success } from '@/utils/feedbacks'
+import http from '@/http'
 
 // componentes
-import Modal from "@/components/Modal"
+import Modal from '@/components/Modal'
 
 // actions
 import { removeGame, selectRemovingGame } from '@/app/reducers/games'
@@ -15,16 +16,21 @@ const Delete = () => {
     const removingGame = useAppSelector(selectRemovingGame)
 
     const deleteHandle = () => {
-        if(removingGame) {
-            dispatch(removeGame(removingGame.id))
-            dispatch(changeModalDisplay(false))
-            success(`${removingGame.name} removido com sucesso!`)
+        if (removingGame) {
+            http.delete(`/games/${removingGame._id}`).then(() => {
+                dispatch(removeGame(removingGame.id))
+                dispatch(changeModalDisplay(false))
+                success(`${removingGame.name} removido com sucesso!`)
+            })
         }
     }
 
     return (
-        <Modal action={() => deleteHandle()} title="Excluir jogo">
-            <p>Tem certeza que deseja excluir o jogo com o nome {removingGame?.name}?</p>
+        <Modal action={() => deleteHandle()} title='Excluir jogo'>
+            <p>
+                Tem certeza que deseja excluir o jogo com o nome{' '}
+                {removingGame?.name}?
+            </p>
         </Modal>
     )
 }

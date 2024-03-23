@@ -4,6 +4,7 @@ import React, { useMemo, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import { useAppDispatch, useAppSelector } from '@/app/hooks'
 import http from '@/http'
+import { v4 as uuidv4 } from 'uuid'
 
 // componentes
 import StyledForm from './styles'
@@ -19,7 +20,7 @@ import {
     setPlataform,
     selectPlataforms,
 } from '@/app/reducers/plataform'
-import { addGame, selectGames } from '@/app/reducers/games'
+import { addGame, fetchGames, selectGames } from '@/app/reducers/games'
 
 // tipagens externas
 import { IGame } from '@/interfaces/IGame'
@@ -66,16 +67,19 @@ const AddForm = () => {
         }
 
         const game: IGame = {
+            id: uuidv4(),
             name: name,
             category: category,
             publish: date,
             plataforms: plataforms,
         }
-        dispatch(addGame(game))
-        http.post('/games', { ...game }).then(() =>
-            success('Novo jogo adicionado!'),
-        )
-        cleanAll()
+
+        http.post('/games', { ...game }).then(() => {
+            dispatch(addGame(game))
+            success('Novo jogo adicionado!')
+            dispatch(fetchGames())
+            cleanAll()
+        })
     }
 
     useMemo(() => {

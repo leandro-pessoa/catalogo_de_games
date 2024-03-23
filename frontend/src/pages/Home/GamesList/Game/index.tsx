@@ -5,14 +5,14 @@ import Dropdown from '@/components/Dropdown'
 
 // tipagem dos props
 interface GameProps {
-    _id: string
+    id: string
     name: string
     category: string
     publish: string
     plataforms: string[]
 }
 
-const Game = ({ _id, name, category, publish, plataforms }: GameProps) => {
+const Game = ({ id, name, category, publish, plataforms }: GameProps) => {
     // formatação da data
     const publishDate = new Date(publish)
     const formattedPublish = new Date(
@@ -34,7 +34,7 @@ const Game = ({ _id, name, category, publish, plataforms }: GameProps) => {
                 <Dropdown element={plataforms} />
             </td>
             <td>
-                <Actions gameId={_id} />
+                <Actions gameId={id} />
             </td>
         </StyledTr>
     )

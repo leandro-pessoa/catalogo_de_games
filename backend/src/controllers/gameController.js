@@ -2,12 +2,11 @@ import Game from '../db/models/Game.js'
 import NotFound from '../errors/NotFound.js'
 
 class GameController {
-
     // GET
     static async listGames(req, res, next) {
         try {
             const games = await Game.find({})
-            if(games) {
+            if (games) {
                 res.status(200).json(games)
             } else {
                 next(new NotFound('Nenhum jogo foi encontrado.'))
@@ -21,14 +20,13 @@ class GameController {
         try {
             const { id } = req.params
             const game = await Game.findById(id)
-            if(game) {
+            if (game) {
                 res.status(200).json({
                     game: game,
                 })
             } else {
                 next(new NotFound('Jogo não encontrado.'))
             }
-            
         } catch (err) {
             next(err)
         }
@@ -40,7 +38,7 @@ class GameController {
             const newGame = await Game.create(req.body)
             res.status(201).json({
                 message: 'Jogo adcionado com sucesso!',
-                game: newGame
+                game: newGame,
             })
         } catch (err) {
             next(err)
@@ -54,7 +52,7 @@ class GameController {
             const updatedGame = await Game.findByIdAndUpdate(id, req.body)
             res.status(200).json({
                 message: 'Jogo atualizado com sucesso!',
-                game: updatedGame
+                game: updatedGame,
             })
         } catch (err) {
             next(err)
@@ -66,10 +64,14 @@ class GameController {
         try {
             const { id } = req.params
             const game = await Game.findById(id)
-            await Game.findByIdAndDelete(id)
-            res.status(200).json({
-                message: `O jogo ${game.name} foi deletado.`
-            })
+            if (game) {
+                await Game.findByIdAndDelete(id)
+                res.status(200).json({
+                    message: `O jogo ${game.name} foi deletado.`,
+                })
+            } else {
+                next(new NotFound('Jogo não encontrado.'))
+            }
         } catch (err) {
             next(err)
         }
