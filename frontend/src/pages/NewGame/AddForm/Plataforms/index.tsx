@@ -5,6 +5,8 @@ import { useAppDispatch, useAppSelector } from '@/app/hooks'
 // componentes
 import Button from '@/components/Button'
 import PlataformsList from './PlataformsList'
+import { StyledInput } from '../Input/styles'
+import StyledDiv from './styles'
 
 // ícones
 import { IoIosAdd } from 'react-icons/io'
@@ -40,10 +42,10 @@ const Plataforms = () => {
     }
 
     return (
-        <div className='form__plataforms-container'>
+        <StyledDiv>
             <label htmlFor='plataforms'>Plataformas</label>
             <div>
-                <input
+                <StyledInput
                     type='text'
                     id='plataforms'
                     autoComplete='off'
@@ -58,7 +60,7 @@ const Plataforms = () => {
                 </Button>
             </div>
             <PlataformsList />
-        </div>
+        </StyledDiv>
     )
 }
 

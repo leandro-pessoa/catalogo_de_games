@@ -1,15 +1,18 @@
 // funções
 import iconsParams from '@/utils/iconsParams'
-import React, { useMemo, useState } from 'react'
+import { useMemo } from 'react'
 import { useParams } from 'react-router-dom'
 import { useAppDispatch, useAppSelector } from '@/app/hooks'
 import http from '@/http'
 import { v4 as uuidv4 } from 'uuid'
+import { useForm } from 'react-hook-form'
 
 // componentes
 import StyledForm from './styles'
 import Button from '@/components/Button'
 import Plataforms from './Plataforms'
+import { FormProvider } from 'react-hook-form'
+import Input from './Input'
 
 // ícones
 import { IoIosAdd } from 'react-icons/io'
@@ -20,7 +23,7 @@ import {
     setPlataform,
     selectPlataforms,
 } from '@/app/reducers/plataform'
-import { addGame, selectGames } from '@/app/reducers/games'
+import { addGame } from '@/app/reducers/games'
 
 // tipagens externas
 import { IGame } from '@/interfaces/IGame'
@@ -30,113 +33,81 @@ const AddForm = () => {
     // states globais
     const dispatch = useAppDispatch()
     const plataforms = useAppSelector(selectPlataforms)
-    const games = useAppSelector(selectGames)
-
-    // states
-    const [name, setName] = useState<string>('')
-    const [category, setCategory] = useState<string>('')
-    const [date, setDate] = useState<string>('')
 
     // constantes utilizadas
-    const maxDate = new Date().toISOString().split('T')[0]
+    const methods = useForm()
 
     // url atual
     const { pathname } = useParams()
 
     // limpa todos os campos
-    const cleanAll = () => {
-        setName('')
-        setCategory('')
-        setDate('')
+    const clearAll = () => {
         dispatch(removeAllPlataforms())
         dispatch(setPlataform(''))
     }
 
-    // handle do formulário
-    const submitHandle = (e: React.FormEvent<HTMLFormElement>) => {
-        e.preventDefault()
-        const gamesNames = games.map((game) => game.name)
-
+    const onSubmit = methods.handleSubmit((data) => {
+        console.log(data)
         if (plataforms.length === 0) {
             error('Adicione ao menos uma plataforma.')
-            return
-        }
-        if (gamesNames.includes(name)) {
-            error('Esse jogo já foi adicionado.')
             return
         }
 
         const game: IGame = {
             id: uuidv4(),
-            name: name,
-            category: category,
-            publish: date,
+            name: data.name,
+            category: data.category,
+            publish: data.date,
             plataforms: plataforms,
         }
 
-        http.post('/games', { ...game }).then((res) => {
-            dispatch(addGame(res.data.game))
-            success(res.data.message)
-            cleanAll()
-        }).catch((err) => {
-            error(err.response.data.message)
-        })
-    }
+        http.post('/games', { ...game })
+            .then((res) => {
+                dispatch(addGame(res.data.game))
+                success(res.data.message)
+                clearAll()
+            })
+            .catch((err) => {
+                error(err.response.data.message)
+            })
+    })
 
     useMemo(() => {
-        cleanAll()
+        clearAll()
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [pathname])
 
     return (
-        <StyledForm onSubmit={submitHandle}>
-            <div>
-                <label htmlFor='name'>Nome</label>
-                <input
+        <FormProvider {...methods}>
+            <StyledForm onSubmit={(e) => e.preventDefault()}>
+                <Input
                     type='text'
                     id='name'
-                    autoComplete='off'
-                    maxLength={15}
                     placeholder='Digite o nome'
-                    value={name}
-                    onChange={(e) => setName(e.target.value)}
-                    required
+                    label='Nome'
+                    maxLength={15}
                 />
-            </div>
-            <div>
-                <label htmlFor='category'>Categoria</label>
-                <input
+                <Input
                     type='text'
                     id='category'
-                    autoComplete='off'
-                    maxLength={15}
                     placeholder='Digite a categoria'
-                    value={category}
-                    onChange={(e) => setCategory(e.target.value)}
-                    required
+                    label='Categoria'
+                    maxLength={15}
                 />
-            </div>
-            <div>
-                <label htmlFor='publish'>Data de lançamento</label>
-                <input
+                <Input
                     type='date'
-                    id='publish'
-                    autoComplete='off'
-                    value={date}
-                    onChange={(e) => setDate(e.target.value)}
-                    required
-                    min='1900-01-01'
-                    max={maxDate}
+                    id='date'
+                    label='Lançamento'
                 />
-            </div>
-            <Plataforms />
-            <div className='form__btn-container'>
-                <Button type='submit'>
-                    <IoIosAdd {...iconsParams('dark')} />
-                    Adicionar
-                </Button>
-            </div>
-        </StyledForm>
+                <Plataforms />
+                <div className='form__btn-container'>
+                    <Button onClick={onSubmit}>
+                        <IoIosAdd {...iconsParams('dark')} />
+                        Adicionar
+                    </Button>
+                </div>
+            </StyledForm>
+        </FormProvider>
     )
 }
 
