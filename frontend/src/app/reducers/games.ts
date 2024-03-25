@@ -5,7 +5,6 @@ import { IGame } from '@/interfaces/IGame'
 import { error } from '@/utils/feedbacks'
 import http from '@/http'
 
-
 // tipagem dos states
 interface GamesStates {
     games: IGame[]
@@ -35,6 +34,9 @@ const gamesSlice = createSlice({
         setRemovingGame: (state, action: PayloadAction<IGame | undefined>) => {
             state.removingGame = action.payload
         },
+        setGames: (state, action: PayloadAction<IGame[]>) => {
+            state.games = action.payload
+        },
     },
     extraReducers: (builder) => {
         builder
@@ -57,7 +59,8 @@ const gamesSlice = createSlice({
 export const gamesReducer = gamesSlice.reducer
 
 // export das actions
-export const { addGame, removeGame, setRemovingGame } = gamesSlice.actions
+export const { addGame, removeGame, setRemovingGame, setGames } =
+    gamesSlice.actions
 
 // export dos states
 export const selectGames = (state: RootState) => state.games.games

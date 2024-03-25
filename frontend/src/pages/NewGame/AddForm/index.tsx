@@ -44,10 +44,10 @@ const AddForm = () => {
     const clearAll = () => {
         dispatch(removeAllPlataforms())
         dispatch(setPlataform(''))
+        methods.reset()
     }
 
     const onSubmit = methods.handleSubmit((data) => {
-        console.log(data)
         if (plataforms.length === 0) {
             error('Adicione ao menos uma plataforma.')
             return
@@ -68,7 +68,11 @@ const AddForm = () => {
                 clearAll()
             })
             .catch((err) => {
-                error(err.response.data.message)
+                if (err.response) {
+                    error(err.response.data.message)
+                } else {
+                    error('Não foi possível a conexão com o servidor.')
+                }
             })
     })
 
@@ -94,11 +98,7 @@ const AddForm = () => {
                     label='Categoria'
                     maxLength={15}
                 />
-                <Input
-                    type='date'
-                    id='date'
-                    label='Lançamento'
-                />
+                <Input type='date' id='date' label='Lançamento' />
                 <Plataforms />
                 <div className='form__btn-container'>
                     <Button onClick={onSubmit}>

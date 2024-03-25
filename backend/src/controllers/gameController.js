@@ -1,5 +1,6 @@
 import Game from '../db/models/Game.js'
 import NotFound from '../errors/NotFound.js'
+import gameSearch from '../utils/gameSearch.js'
 
 class GameController {
     // GET
@@ -21,6 +22,22 @@ class GameController {
             const { id } = req.params
             const game = await Game.findById(id)
             if (game) {
+                res.status(200).json({
+                    game: game,
+                })
+            } else {
+                next(new NotFound('Jogo não encontrado.'))
+            }
+        } catch (err) {
+            next(err)
+        }
+    }
+
+    static async searchGame(req, res, next) {
+        try {
+            const search = gameSearch(req)
+            const game = await Game.find(search)
+            if (game.length >= 1) {
                 res.status(200).json({
                     game: game,
                 })
