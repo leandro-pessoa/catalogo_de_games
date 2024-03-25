@@ -1,4 +1,5 @@
 import Game from '../db/models/Game.js'
+import BadRequest from '../errors/BadRequest.js'
 import NotFound from '../errors/NotFound.js'
 import gameSearch from '../utils/gameSearch.js'
 
@@ -52,11 +53,17 @@ class GameController {
     // POST
     static async addGame(req, res, next) {
         try {
-            const newGame = await Game.create(req.body)
-            res.status(201).json({
-                message: 'Jogo adcionado com sucesso!',
-                game: newGame,
-            })
+            const games = await Game.find({})
+            const gamesNames = games.map((game) => game.name.toLowerCase())
+            if (gamesNames.includes(req.body.name.toLowerCase())) {
+                next(new BadRequest('Esse jogo já foi adicionado.'))
+            } else {
+                const newGame = await Game.create(req.body)
+                res.status(201).json({
+                    message: 'Jogo adcionado com sucesso!',
+                    game: newGame,
+                })
+            }
         } catch (err) {
             next(err)
         }
