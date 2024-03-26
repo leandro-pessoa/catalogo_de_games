@@ -24,7 +24,11 @@ const Delete = () => {
                     success(res.data.message)
                 })
                 .catch((err) => {
-                    error(err.response.data.message)
+                    if (err.response) {
+                        error(err.response.data.message)
+                    } else {
+                        error('Não foi possível a conexão com o servidor.')
+                    }
                 })
         }
     }

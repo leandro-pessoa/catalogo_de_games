@@ -1,6 +1,6 @@
 // funções
 import iconsParams from '@/utils/iconsParams'
-import { useMemo } from 'react'
+import { useMemo, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import { useAppDispatch, useAppSelector } from '@/app/hooks'
 import http from '@/http'
@@ -13,6 +13,7 @@ import Button from '@/components/Button'
 import Plataforms from './Plataforms'
 import { FormProvider } from 'react-hook-form'
 import Input from './Input'
+import Loading from '@/components/Loading'
 
 // ícones
 import { IoIosAdd } from 'react-icons/io'
@@ -33,6 +34,9 @@ const AddForm = () => {
     // states globais
     const dispatch = useAppDispatch()
     const plataforms = useAppSelector(selectPlataforms)
+
+    // states
+    const [isLoading, setIsLoading] = useState<boolean>(false)
 
     // constantes utilizadas
     const methods = useForm()
@@ -61,6 +65,8 @@ const AddForm = () => {
             plataforms: plataforms,
         }
 
+        setIsLoading(true)
+
         http.post('/games', { ...game })
             .then((res) => {
                 dispatch(addGame(res.data.game))
@@ -74,6 +80,7 @@ const AddForm = () => {
                     error('Não foi possível a conexão com o servidor.')
                 }
             })
+            .finally(() => setIsLoading(false))
     })
 
     useMemo(() => {
@@ -107,6 +114,7 @@ const AddForm = () => {
                     </Button>
                 </div>
             </StyledForm>
+            {isLoading && <Loading overlay={true} />}
         </FormProvider>
     )
 }

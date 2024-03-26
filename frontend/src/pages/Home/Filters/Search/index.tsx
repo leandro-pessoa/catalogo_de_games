@@ -22,7 +22,13 @@ const Search = () => {
         if (e.key === 'Enter') {
             http.get(`/games/search?name=${searchValue}`)
                 .then((res) => dispatch(setGames(res.data.game)))
-                .catch((err) => error(err.response.data.message))
+                .catch((err) => {
+                    if (err.response) {
+                        error(err.response.data.message)
+                    } else {
+                        error('Não foi possível a conexão com o servidor.')
+                    }
+                })
         }
     }
 

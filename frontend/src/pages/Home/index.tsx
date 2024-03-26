@@ -7,6 +7,7 @@ import Container from '@/components/Container'
 import GamesList from './GamesList'
 import Filters from './Filters'
 import StyledH2 from './styles'
+import Loading from '@/components/Loading'
 
 // states globais e actions
 import {
@@ -32,7 +33,7 @@ const Home = () => {
     let content
 
     if (gamesStatus === 'loading') {
-        content = <StyledH2>Carregando. . .</StyledH2>
+        content = <Loading />
     } else if (gamesStatus === 'succeeded') {
         if (games.length < 1) {
             content = <StyledH2>Não há jogos inseridos na lista.</StyledH2>
