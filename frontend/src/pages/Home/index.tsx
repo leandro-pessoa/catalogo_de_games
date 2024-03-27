@@ -8,6 +8,7 @@ import GamesList from './GamesList'
 import Filters from './Filters'
 import StyledH2 from './styles'
 import Loading from '@/components/Loading'
+import Button from '@/components/Button'
 
 // states globais e actions
 import {
@@ -15,6 +16,9 @@ import {
     selectGamesStatus,
     fetchGames,
 } from '@/app/reducers/games'
+
+// ícones
+import { TbReload } from 'react-icons/tb'
 
 const Home = () => {
     // states globais
@@ -46,7 +50,15 @@ const Home = () => {
             )
         }
     } else if (gamesStatus === 'failed') {
-        content = <StyledH2>Erro no carregamento dos dados.</StyledH2>
+        content = (
+            <>
+                <StyledH2>Erro no carregamento dos dados.</StyledH2>
+                <Button onClick={() => dispatch(fetchGames())}>
+                    <TbReload size={20}/>
+                    Recarregar
+                </Button>
+            </>
+        )
     }
 
     return <Container>{content}</Container>
