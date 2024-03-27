@@ -15,6 +15,10 @@ const StyledInput = styled.input`
     &:focus {
         outline: 2px solid ${variables.red};
     }
+
+    @media (max-width: ${variables.tablet}) {
+        font-size: 1rem;
+    }
 `
 
 export default StyledInput

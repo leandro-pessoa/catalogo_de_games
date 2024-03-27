@@ -7,7 +7,8 @@ class GameController {
     // GET
     static async listGames(req, res, next) {
         try {
-            const games = await Game.find({})
+            const games = await Game.find({}).sort({ _id: -1 })
+
             if (games) {
                 res.status(200).json(games)
             } else {

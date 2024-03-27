@@ -2,9 +2,10 @@
 import styled from 'styled-components'
 
 // variáveis
-import { variables } from '@/variables'
+import { variables, flex } from '@/variables'
 
 const StyledDiv = styled.div`
+    ${flex('row', 'space-between', 'center')}
     width: 80%;
     padding: 0.5rem 0;
 

@@ -27,7 +27,7 @@ const Plataforms = () => {
 
     // handle para adicionar as plataformas
     const addHandle = () => {
-        if (!plataforms.includes(plataform) && plataform.trim()) {
+        if (!plataforms.includes(plataform.trim()) && plataform.trim()) {
             dispatch(addPlataform(plataform))
             dispatch(setPlataform(''))
         }
@@ -35,7 +35,7 @@ const Plataforms = () => {
 
     // handle para adicionar plataforma com o Enter
     const keyboardHandle = (e: React.KeyboardEvent) => {
-        if(e.key === 'Enter') {
+        if (e.key === 'Enter') {
             addHandle()
             e.preventDefault()
         }

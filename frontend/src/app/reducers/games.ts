@@ -24,7 +24,7 @@ const gamesSlice = createSlice({
     initialState,
     reducers: {
         addGame: (state, action: PayloadAction<IGame>) => {
-            state.games = [...state.games, action.payload]
+            state.games = [action.payload, ...state.games]
         },
         removeGame: (state, action: PayloadAction<string>) => {
             state.games = state.games.filter(

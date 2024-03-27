@@ -21,7 +21,10 @@ const Search = () => {
     const searchHandle = (e: React.KeyboardEvent) => {
         if (e.key === 'Enter') {
             http.get(`/games/search?name=${searchValue}`)
-                .then((res) => dispatch(setGames(res.data.game)))
+                .then((res) => {
+                    dispatch(setGames(res.data.game))
+                    setSearchValue('')
+                })
                 .catch((err) => {
                     if (err.response) {
                         error(err.response.data.message)
