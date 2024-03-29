@@ -69,6 +69,7 @@ const StyledNav = styled.nav<NavProps>`
         padding: .5rem;
         z-index: 10;
         background-color: ${(props) => props.theme.colors.backgroundColor};
+        transition: none;
 
         div {
             display: none;

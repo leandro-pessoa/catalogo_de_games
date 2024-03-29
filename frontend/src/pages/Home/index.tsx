@@ -6,9 +6,9 @@ import { useEffect } from 'react'
 import Container from '@/components/Container'
 import GamesList from './GamesList'
 import Filters from './Filters'
-import StyledH2 from './styles'
 import Loading from '@/components/Loading'
 import Button from '@/components/Button'
+import Title from '@/components/Title'
 
 // states globais e actions
 import {
@@ -40,7 +40,7 @@ const Home = () => {
         content = <Loading />
     } else if (gamesStatus === 'succeeded') {
         if (games.length < 1) {
-            content = <StyledH2>Não há jogos inseridos na lista.</StyledH2>
+            content = <Title>Não há jogos inseridos na lista.</Title>
         } else {
             content = (
                 <>
@@ -52,7 +52,7 @@ const Home = () => {
     } else if (gamesStatus === 'failed') {
         content = (
             <>
-                <StyledH2>Erro no carregamento dos dados.</StyledH2>
+                <Title>Erro no carregamento dos dados.</Title>
                 <Button onClick={() => dispatch(fetchGames())}>
                     <TbReload size={20}/>
                     Recarregar

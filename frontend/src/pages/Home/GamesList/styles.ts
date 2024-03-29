@@ -19,6 +19,7 @@ const StyledDiv = styled.div`
     @media (max-width: ${variables.smartphone}) {
         width: 100%;
         max-height: 300px;
+        margin-bottom: 5rem;
     }
 `
 
@@ -33,7 +34,7 @@ const StyledTable = styled.table`
         z-index: 10;
 
         th {
-            padding: 0.7rem 0;
+            padding: .7rem 0;
         }
     }
 

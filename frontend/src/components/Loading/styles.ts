@@ -20,6 +20,7 @@ const StyledDiv = styled.div<DivProps>`
             left: 0; `}
     z-index: 14;
     background-color: ${(props) => props.theme.colors.backgroundColor}7f;
+    margin-top: ${(props) => props.$overlay ? '0' : '5rem'};
 
     div {
         border: 8px solid ${(props) => props.theme.colors.borderColor};
@@ -36,6 +37,14 @@ const StyledDiv = styled.div<DivProps>`
         }
         100% {
             transform: rotate(360deg);
+        }
+    }
+
+    @media (max-width: ${variables.smartphone}) {
+        div {
+            width: 40px;
+            height: 40px;
+            border-width: 4px;
         }
     }
 `

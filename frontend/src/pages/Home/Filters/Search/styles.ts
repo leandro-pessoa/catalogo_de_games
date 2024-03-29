@@ -19,6 +19,9 @@ const StyledInput = styled.input`
     @media (max-width: ${variables.tablet}) {
         font-size: 1rem;
     }
+    @media (max-width: ${variables.smartphone}) {
+        font-size: 0.95rem;
+    }
 `
 
 export default StyledInput

@@ -9,7 +9,7 @@ const StyledButton = styled.button`
     position: relative;
     background-color: ${(props) => props.theme.colors.fontColor};
     color: ${(props) => props.theme.colors.backgroundColor};
-    padding: 0.1rem 0.7rem;
+    padding: 0.2rem 0.7rem;
     border: none;
     font-size: 1rem;
     width: 200px;
@@ -59,7 +59,18 @@ const StyledButton = styled.button`
     }
 
     @media (max-width: ${variables.smartphone}) {
+        width: 190px;
         font-size: 0.9rem;
+    }
+    @media (max-width: ${variables.smallSmartphone}) {
+        font-size: 0.7rem;
+        width: 160px;
+
+        .select__dropdown {
+            li {
+                font-size: 0.7rem;
+            }
+        }
     }
 `
 

@@ -9,7 +9,9 @@ const Filters = () => {
         <StyledDiv>
             <Search />
             <Categories />
-            <ShowAll />
+            <div className='show-all'>
+                <ShowAll />
+            </div>
         </StyledDiv>
     )
 }

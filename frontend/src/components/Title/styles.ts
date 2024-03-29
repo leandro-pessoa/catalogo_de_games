@@ -2,7 +2,7 @@
 import styled from 'styled-components'
 
 // variáveis
-import { flex, variables } from '@/variables'
+import { variables, flex } from '@/variables'
 
 const StyledH2 = styled.h2`
     ${flex('row', 'center', 'center')}
@@ -19,7 +19,7 @@ const StyledH2 = styled.h2`
     }
     @media (max-width: ${variables.smartphone}) {
         font-size: 1.1rem;
-        height: 50vh;
+        margin-top: 5rem;
     }
 `
 

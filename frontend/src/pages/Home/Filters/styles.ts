@@ -17,6 +17,13 @@ const StyledDiv = styled.div`
     }
     @media (max-width: ${variables.smartphone}) {
         ${flex('column', 'auto', 'flex-start', '2rem')}
+        position: relative;
+
+        .show-all {
+            position: absolute;
+            right: 0;
+            top: 0;
+        }
     }
 `
 

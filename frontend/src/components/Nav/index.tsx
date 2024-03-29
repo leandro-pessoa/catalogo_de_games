@@ -11,6 +11,7 @@ import { RiMenuFoldLine } from 'react-icons/ri'
 import { RiMenuUnfoldLine } from 'react-icons/ri'
 import { GoHome } from 'react-icons/go'
 import { IoIosAddCircleOutline } from 'react-icons/io'
+import { CiEdit } from 'react-icons/ci'
 
 // states globais
 import { selectNavDisplay, selectTheme } from '@/app/reducers/app'
@@ -49,6 +50,12 @@ const Nav = () => {
                     <NavLink to='/novo-jogo'>
                         <IoIosAddCircleOutline size={26} />
                         <span>Novo jogo</span>
+                    </NavLink>
+                </li>
+                <li>
+                    <NavLink to='/editar-jogo'>
+                        <CiEdit size={26} />
+                        <span>Editar jogo</span>
                     </NavLink>
                 </li>
             </ul>
