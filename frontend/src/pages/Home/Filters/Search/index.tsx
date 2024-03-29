@@ -1,21 +1,19 @@
 // funções
 import http from '@/http'
-import { useState } from 'react'
 import { error } from '@/utils/feedbacks'
-import { useAppDispatch } from '@/app/hooks'
+import { useAppDispatch, useAppSelector } from '@/app/hooks'
 
 // componentes
 import StyledInput from './styles'
 
-// actions
+// actions e states globais
 import { setGames } from '@/app/reducers/games'
+import { selectSearchValue, setSearchValue, setSelectedOpt } from '@/app/reducers/filters'
 
 const Search = () => {
     // states globais
     const dispatch = useAppDispatch()
-
-    // states
-    const [searchValue, setSearchValue] = useState<string>('')
+    const searchValue = useAppSelector(selectSearchValue)
 
     // handle de busca
     const searchHandle = (e: React.KeyboardEvent) => {
@@ -23,7 +21,8 @@ const Search = () => {
             http.get(`/games/search?name=${searchValue}`)
                 .then((res) => {
                     dispatch(setGames(res.data.game))
-                    setSearchValue('')
+                    dispatch(setSearchValue(''))
+                    dispatch(setSelectedOpt('Qualquer'))
                 })
                 .catch((err) => {
                     if (err.response) {
@@ -41,7 +40,7 @@ const Search = () => {
             type='text'
             onKeyDown={(e) => searchHandle(e)}
             value={searchValue}
-            onChange={(e) => setSearchValue(e.target.value)}
+            onChange={(e) => dispatch(setSearchValue(e.target.value))}
         />
     )
 }

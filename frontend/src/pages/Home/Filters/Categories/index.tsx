@@ -10,6 +10,7 @@ import Select from '@/components/Select'
 
 // actions e states globais
 import { setGames, selectGames, fetchGames } from '@/app/reducers/games'
+import { selectSearchValue, selectSelectedOpt, setSelectedOpt } from '@/app/reducers/filters'
 
 // tipagens externas
 import { IGame } from '@/interfaces/IGame'
@@ -17,11 +18,12 @@ import { IGame } from '@/interfaces/IGame'
 const Categories = () => {
     // states globais
     const games = useAppSelector(selectGames)
+    const name = useAppSelector(selectSearchValue)
+    const selectedOpt = useAppSelector(selectSelectedOpt)
     const dispatch = useAppDispatch()
 
     // states
     const [selectOpts, setSelectOpts] = useState<string[]>([])
-    const [selectedOpt, setSelectedOpt] = useState<string>('Qualquer')
 
     // encontra as categorias disponíveis
     const foundCategories = () => {
@@ -32,16 +34,16 @@ const Categories = () => {
             )
             setSelectOpts(uniqueCategories)
             if (games.length === categories.length) {
-                setSelectedOpt('Qualquer')
+                dispatch(setSelectedOpt('Qualquer'))
             }
         })
     }
 
     // faz a seleção da categoria
     const selectCategory = (category: string) => {
-        http.get(`/games/search?category=${category}`)
+        http.get(`/games/search?category=${category}&name=${name}`)
             .then((res) => {
-                setSelectedOpt(category)
+                dispatch(setSelectedOpt(category))
                 dispatch(setGames(res.data.game))
             })
             .catch((err) => {
@@ -56,7 +58,7 @@ const Categories = () => {
     useEffect(() => {
         foundCategories()
         // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [games])
+    }, [games, selectedOpt])
 
     return (
         <StyledDiv>

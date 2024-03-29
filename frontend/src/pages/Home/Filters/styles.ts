@@ -15,7 +15,7 @@ const StyledDiv = styled.div`
     @media (max-width: ${variables.tablet}) {
         width: 95%;
     }
-    @media (max-width: ${variables.smallSmartphone}) {
+    @media (max-width: ${variables.smartphone}) {
         ${flex('column', 'auto', 'flex-start', '2rem')}
     }
 `

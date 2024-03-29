@@ -11,8 +11,8 @@ const StyledButton = styled.button`
     color: ${(props) => props.theme.colors.backgroundColor};
     padding: 0.1rem 0.7rem;
     border: none;
-    font-size: 1.2rem;
-    width: 150px;
+    font-size: 1rem;
+    width: 200px;
     font-family: ${variables.primaryFont};
 
     &:hover {
@@ -58,11 +58,8 @@ const StyledButton = styled.button`
         background-color: ${variables.white};
     }
 
-    @media (max-width: ${variables.tablet}) {
-        font-size: 1rem;
-    }
     @media (max-width: ${variables.smartphone}) {
-        font-size: .9rem;
+        font-size: 0.9rem;
     }
 `
 
