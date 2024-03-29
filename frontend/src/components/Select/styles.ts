@@ -34,6 +34,7 @@ const StyledButton = styled.button`
         max-height: 200px;
         overflow-y: auto;
         overflow-x: hidden;
+        box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.1);
 
         li {
             ${flex('row', 'flex-start', 'center')}
@@ -55,6 +56,13 @@ const StyledButton = styled.button`
     }
     ::-webkit-scrollbar-thumb {
         background-color: ${variables.white};
+    }
+
+    @media (max-width: ${variables.tablet}) {
+        font-size: 1rem;
+    }
+    @media (max-width: ${variables.smartphone}) {
+        font-size: .9rem;
     }
 `
 
