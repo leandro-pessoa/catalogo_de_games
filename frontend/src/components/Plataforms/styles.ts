@@ -1,8 +1,8 @@
 // funções
-import styled from "styled-components";
+import styled from 'styled-components'
 
 // variáveis
-import { flex, variables } from "@/variables";
+import { flex, variables } from '@/variables'
 
 const StyledDiv = styled.div`
     grid-column: 1 / 3;
@@ -26,6 +26,6 @@ const StyledDiv = styled.div`
             }
         }
     }
-`   
+`
 
 export default StyledDiv

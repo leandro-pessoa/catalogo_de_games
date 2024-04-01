@@ -11,9 +11,17 @@ interface InputProps {
     placeholder?: string
     label: string
     maxLength?: number
+    value?: string
 }
 
-const Input = ({ type, id, placeholder, label, maxLength }: InputProps) => {
+const Input = ({
+    type,
+    id,
+    placeholder,
+    label,
+    maxLength,
+    value,
+}: InputProps) => {
     // constantes utilizadas
     const maxDate = new Date().toISOString().split('T')[0]
     const minDate = '01-01-1900'
@@ -47,7 +55,8 @@ const Input = ({ type, id, placeholder, label, maxLength }: InputProps) => {
                     max: {
                         value: maxDate,
                         message: `A data não pode ultrapassar o dia atual.`,
-                    }
+                    },
+                    value: value,
                 })}
             />
             {errors[id] &&

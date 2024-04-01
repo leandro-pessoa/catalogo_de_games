@@ -40,9 +40,6 @@ const appSlice = createSlice({
         changeModalType: (state, action: PayloadAction<string>) => {
             state.modalType = action.payload
         },
-        setEditingGame: (state, action: PayloadAction<IGame>) => {
-            state.editingGame = action.payload
-        },
     },
 })
 
@@ -55,7 +52,6 @@ export const {
     changeNavDisplay,
     changeModalDisplay,
     changeModalType,
-    setEditingGame,
 } = appSlice.actions
 
 // export dos states
@@ -63,4 +59,3 @@ export const selectTheme = (state: RootState) => state.app.theme
 export const selectNavDisplay = (state: RootState) => state.app.navDisplay
 export const selectModalDisplay = (state: RootState) => state.app.modalDisplay
 export const selectModalType = (state: RootState) => state.app.modalType
-export const selectEditingGame = (state: RootState) => state.app.editingGame

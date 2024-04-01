@@ -1,53 +1,41 @@
 // funções
-import iconsParams from '@/utils/iconsParams'
-import { useMemo, useState } from 'react'
-import { useParams } from 'react-router-dom'
-import { useAppDispatch, useAppSelector } from '@/app/hooks'
+import { useState } from 'react'
+import { useAppDispatch } from '@/app/hooks'
 import http from '@/http'
 import { v4 as uuidv4 } from 'uuid'
 import { useForm } from 'react-hook-form'
+import iconsParams from '@/utils/iconsParams'
 
 // componentes
-import StyledForm from './styles'
-import Button from '@/components/Button'
-import Plataforms from './Plataforms'
+import Plataforms from '@/components/Plataforms'
 import { FormProvider } from 'react-hook-form'
-import Input from './Input'
-import Loading from '@/components/Loading'
-
-// ícones
-import { IoIosAdd } from 'react-icons/io'
+import Input from '@/components/Input'
+import Form from '@/components/Form'
 
 // actions e states globais
-import {
-    removeAllPlataforms,
-    setPlataform,
-    selectPlataforms,
-} from '@/app/reducers/plataform'
 import { addGame } from '@/app/reducers/games'
 
 // tipagens externas
 import { IGame } from '@/interfaces/IGame'
 import { success, error } from '@/utils/feedbacks'
 
+// ícones
+import { IoIosAdd } from 'react-icons/io'
+
 const AddForm = () => {
     // states globais
     const dispatch = useAppDispatch()
-    const plataforms = useAppSelector(selectPlataforms)
 
     // states
     const [isLoading, setIsLoading] = useState<boolean>(false)
+    const [plataforms, setPlataforms] = useState<string[]>([])
 
     // constantes utilizadas
     const methods = useForm()
 
-    // url atual
-    const { pathname } = useParams()
-
     // limpa todos os campos
     const clearAll = () => {
-        dispatch(removeAllPlataforms())
-        dispatch(setPlataform(''))
+        setPlataforms([])
         methods.reset()
     }
 
@@ -83,14 +71,15 @@ const AddForm = () => {
             .finally(() => setIsLoading(false))
     })
 
-    useMemo(() => {
-        clearAll()
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [pathname])
-
     return (
         <FormProvider {...methods}>
-            <StyledForm onSubmit={(e) => e.preventDefault()}>
+            <Form
+                isLoading={isLoading}
+                onSubmit={onSubmit}
+                submitText='Adicionar'
+                title='Adicionar jogo'
+                submitIcon={<IoIosAdd {...iconsParams('dark')}/>}
+            >
                 <Input
                     type='text'
                     id='name'
@@ -106,15 +95,8 @@ const AddForm = () => {
                     maxLength={15}
                 />
                 <Input type='date' id='date' label='Lançamento' />
-                <Plataforms />
-                <div className='form__btn-container'>
-                    <Button onClick={onSubmit}>
-                        <IoIosAdd {...iconsParams('dark')} />
-                        Adicionar
-                    </Button>
-                </div>
-            </StyledForm>
-            {isLoading && <Loading overlay={true} />}
+                <Plataforms plataforms={plataforms} setPlataforms={setPlataforms}/>
+            </Form>
         </FormProvider>
     )
 }

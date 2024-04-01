@@ -10,6 +10,7 @@ interface GamesStates {
     games: IGame[]
     status: 'idle' | 'loading' | 'succeeded' | 'failed'
     removingGame: IGame | undefined
+    editingGame: IGame | undefined
 }
 
 // states
@@ -17,6 +18,7 @@ const initialState: GamesStates = {
     games: [],
     status: 'idle',
     removingGame: undefined,
+    editingGame: undefined
 }
 
 const gamesSlice = createSlice({
@@ -37,6 +39,13 @@ const gamesSlice = createSlice({
         setGames: (state, action: PayloadAction<IGame[]>) => {
             state.games = action.payload
         },
+        setEditingGame: (state, action: PayloadAction<IGame | undefined>) => {
+            state.editingGame = action.payload
+        },
+        editGame: (state, action: PayloadAction<IGame>) => {
+            state.games = state.games.filter((game) => game.id !== action.payload.id)
+            state.games = [...state.games, action.payload]
+        }
     },
     extraReducers: (builder) => {
         builder
@@ -59,13 +68,14 @@ const gamesSlice = createSlice({
 export const gamesReducer = gamesSlice.reducer
 
 // export das actions
-export const { addGame, removeGame, setRemovingGame, setGames } =
+export const { addGame, removeGame, setRemovingGame, setGames, setEditingGame, editGame } =
     gamesSlice.actions
 
 // export dos states
 export const selectGames = (state: RootState) => state.games.games
 export const selectGamesStatus = (state: RootState) => state.games.status
 export const selectRemovingGame = (state: RootState) => state.games.removingGame
+export const selectEditingGame = (state: RootState) => state.games.editingGame
 
 // chamada assíncrona
 export const fetchGames = createAsyncThunk('games/fetchGames', async () => {

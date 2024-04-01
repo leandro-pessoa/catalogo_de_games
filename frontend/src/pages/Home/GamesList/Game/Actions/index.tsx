@@ -1,5 +1,6 @@
 // funções
 import { useAppDispatch, useAppSelector } from '@/app/hooks'
+import { useNavigate } from 'react-router-dom'
 
 // componentes
 import StyledDiv from './styles'
@@ -12,8 +13,11 @@ import { MdEdit } from 'react-icons/md'
 import { selectTheme } from '@/app/reducers/app'
 
 // actions
-import { changeModalDisplay, changeModalType } from '@/app/reducers/app'
-import { selectGames, setRemovingGame } from '@/app/reducers/games'
+import {
+    changeModalDisplay,
+    changeModalType,
+} from '@/app/reducers/app'
+import { selectGames, setRemovingGame, setEditingGame } from '@/app/reducers/games'
 
 // variáveis
 import { variables } from '@/variables'
@@ -29,19 +33,34 @@ const Actions = ({ gameId }: ActionsProps) => {
     const games = useAppSelector(selectGames)
     const dispatch = useAppDispatch()
 
+    // tema do ícone
     const iconsColor = theme === 'dark' ? variables.white : variables.darkGray
+
+    // função de navegação
+    const navigate = useNavigate()
 
     // handle para abrir o modal de exclusão
     const deleteHandle = () => {
         const removingGame = games.find((game) => game.id === gameId)
-        dispatch(changeModalType('delete'))
-        dispatch(setRemovingGame(removingGame))
-        dispatch(changeModalDisplay(true))
+        if(removingGame) {
+            dispatch(changeModalType('delete'))
+            dispatch(setRemovingGame(removingGame))
+            dispatch(changeModalDisplay(true))
+        }
+    }
+
+    // handle para ir à página de edição
+    const editHandle = () => {
+        const editingGame = games.find((game) => game.id === gameId)
+        if(editingGame) {
+            dispatch(setEditingGame(editingGame))
+            navigate('/editar-jogo')
+        }
     }
 
     return (
         <StyledDiv>
-            <button>
+            <button onClick={() => editHandle()}>
                 <MdEdit color={iconsColor} />
             </button>
             <button onClick={() => deleteHandle()}>

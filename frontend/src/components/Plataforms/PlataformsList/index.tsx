@@ -1,24 +1,23 @@
-// funções
-import { useAppSelector, useAppDispatch } from "@/app/hooks"
+// funções e tipagens
+import { Dispatch, SetStateAction } from 'react'
 
 // componentes
 import StyledUl from "./styles"
 import Button from '@/components/Button'
 
-// states globais e actions
-import { removePlataform, selectPlataforms } from "@/app/reducers/plataform"
-
 // ícones
 import { IoCloseOutline } from 'react-icons/io5'
 
-const PlataformsList = () => {
-    // states globais
-    const plataforms = useAppSelector(selectPlataforms)
-    const dispatch = useAppDispatch()
+// tipagem dos props
+interface PlataformsListProps {
+    plataforms: string[]
+    setPlataforms: Dispatch<SetStateAction<string[]>>
+}
 
+const PlataformsList = ({ plataforms, setPlataforms }: PlataformsListProps) => {
     // handle de remover
-    const removeHandle = (plataform: string) => {
-        dispatch(removePlataform(plataform))
+    const removeHandle = (ePlataform: string) => {
+        setPlataforms(plataforms.filter((plataform) => plataform !== ePlataform))
     }
 
     return (

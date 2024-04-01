@@ -4,9 +4,10 @@ import { useAppSelector } from '@/app/hooks'
 // componentes
 import Container from '@/components/Container'
 import Title from '@/components/Title'
+import EditForm from './EditForm'
 
 // states globais
-import { selectEditingGame } from '@/app/reducers/app'
+import { selectEditingGame } from '@/app/reducers/games'
 
 const EditGame = () => {
     // states globais
@@ -15,7 +16,7 @@ const EditGame = () => {
     return (
         <Container>
             {editingGame ? (
-                <p>Editar jogo</p>
+                <EditForm />
             ) : (
                 <Title>Nenhum jogo foi selecionado</Title>
             )}
