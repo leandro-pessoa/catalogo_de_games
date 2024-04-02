@@ -9,7 +9,7 @@ const StyledDiv = styled.div`
 
     span {
         display: block;
-        color: ${variables.red};
+        color: ${variables.lightRed};
         font-size: 0.8rem;
         margin-top: 0.4rem;
     }

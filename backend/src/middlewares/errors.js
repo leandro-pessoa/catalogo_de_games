@@ -3,6 +3,7 @@ import BaseError from '../errors/BaseError.js'
 import BadRequest from '../errors/BadRequest.js'
 import ValidationError from '../errors/ValidationError.js'
 
+// verifica qual é a instância do erro e, em seguida, lança a resposta adequada
 // eslint-disable-next-line no-unused-vars
 const errors = (err, req, res, next) => {
     if (err instanceof mongoose.Error.CastError) {

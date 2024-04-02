@@ -1,3 +1,7 @@
+
+// pega os valores de busca lançados 
+// processa eles com o regex
+// e retorna um objeto com os dados tratados
 const gameSearch = (req) => {
     const { name, category } = req.query
     const query = {}

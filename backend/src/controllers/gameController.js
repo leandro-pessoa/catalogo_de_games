@@ -5,6 +5,8 @@ import gameSearch from '../utils/gameSearch.js'
 
 class GameController {
     // GET
+
+    // lista todos os jogos, pela ordem dos mais recentes
     static async listGames(req, res, next) {
         try {
             const games = await Game.find({}).sort({ _id: -1 })
@@ -19,6 +21,7 @@ class GameController {
         }
     }
 
+    // lista um jogo, sendo encontrado pelo id
     static async listGameById(req, res, next) {
         try {
             const { id } = req.params
@@ -35,6 +38,7 @@ class GameController {
         }
     }
 
+    // realiza a pesquisa de um jogo, seja pelo nome ou categoria
     static async searchGame(req, res, next) {
         try {
             const search = gameSearch(req)
@@ -52,6 +56,9 @@ class GameController {
     }
 
     // POST
+
+    // adiciona um novo jogo ao banco de dados
+    // também verifica se o jogo já foi adicionado
     static async addGame(req, res, next) {
         try {
             const games = await Game.find({})
@@ -71,6 +78,8 @@ class GameController {
     }
 
     // PUT
+
+    // realiza a edição de um jogo
     static async updateGame(req, res, next) {
         try {
             const { id } = req.params
@@ -85,6 +94,8 @@ class GameController {
     }
 
     // DELETE
+
+    // exclui um jogo
     static async deleteGame(req, res, next) {
         try {
             const { id } = req.params
