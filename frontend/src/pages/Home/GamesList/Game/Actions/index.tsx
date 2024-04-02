@@ -60,10 +60,10 @@ const Actions = ({ gameId }: ActionsProps) => {
 
     return (
         <StyledDiv>
-            <button onClick={() => editHandle()}>
+            <button onClick={() => editHandle()} aria-label='Editar jogo'>
                 <MdEdit color={iconsColor} />
             </button>
-            <button onClick={() => deleteHandle()}>
+            <button onClick={() => deleteHandle()} aria-label='Excluir jogo'>
                 <IoMdTrash color={iconsColor} />
             </button>
         </StyledDiv>

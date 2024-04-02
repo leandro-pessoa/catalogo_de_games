@@ -31,6 +31,7 @@ const Nav = () => {
                 <button
                     onClick={() => dispatch(changeNavDisplay(!navDisplay))}
                     className='nav__menu-btn'
+                    aria-label='Menu lateral'
                 >
                     {navDisplay ? (
                         <RiMenuFoldLine {...iconsParams(theme)} />
