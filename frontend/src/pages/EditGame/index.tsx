@@ -14,7 +14,7 @@ const EditGame = () => {
     const editingGame = useAppSelector(selectEditingGame)
 
     return (
-        <Container>
+        <Container verticalAlign={editingGame ? false : true}>
             {editingGame ? (
                 <EditForm />
             ) : (

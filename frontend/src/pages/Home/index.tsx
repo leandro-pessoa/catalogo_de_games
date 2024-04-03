@@ -61,7 +61,15 @@ const Home = () => {
         )
     }
 
-    return <Container>{content}</Container>
+    return (
+        <Container
+            verticalAlign={
+                gamesStatus === 'loading' || gamesStatus === 'failed'
+            }
+        >
+            {content}
+        </Container>
+    )
 }
 
 export default Home

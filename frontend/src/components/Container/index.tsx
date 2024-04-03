@@ -8,10 +8,11 @@ interface ContainerProps {
         | React.ReactElement[]
         | (string | React.ReactElement[])
         | (string | undefined)
+    verticalAlign?: boolean
 }
 
-const Container = ({ children }: ContainerProps) => {
-    return <StyledSection>{children}</StyledSection>
+const Container = ({ children, verticalAlign = false }: ContainerProps) => {
+    return <StyledSection $verticalAlign={verticalAlign}>{children}</StyledSection>
 }
 
 export default Container
