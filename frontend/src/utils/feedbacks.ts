@@ -7,11 +7,19 @@ const error = (msg: string) => {
 }
 
 const success = (msg: string) => {
-    return toast.success(msg)
+    return toast.success(msg, {
+        toastId: 1
+    })
+}
+
+const update = (msg: string) => {
+    return toast.update(1, {
+        render: msg
+    })
 }
 
 const warning = (msg: string) => {
     return toast.warning(msg)
 }
 
-export { error, success, warning }
+export { error, success, update, warning }
