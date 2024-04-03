@@ -18,7 +18,6 @@ interface PlataformsProps {
 }
 
 const Plataforms = ({ plataforms, setPlataforms }: PlataformsProps) => {
-
     // states
     const [plataform, setPlataform] = useState<string>('')
 
@@ -56,7 +55,10 @@ const Plataforms = ({ plataforms, setPlataforms }: PlataformsProps) => {
                     <IoIosAdd {...iconsParams('dark')} />
                 </Button>
             </div>
-            <PlataformsList plataforms={plataforms} setPlataforms={setPlataforms}/>
+            <PlataformsList
+                plataforms={plataforms}
+                setPlataforms={setPlataforms}
+            />
         </StyledDiv>
     )
 }

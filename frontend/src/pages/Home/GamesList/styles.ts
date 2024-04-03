@@ -34,7 +34,7 @@ const StyledTable = styled.table`
         z-index: 10;
 
         th {
-            padding: .7rem 0;
+            padding: 0.7rem 0;
         }
     }
 

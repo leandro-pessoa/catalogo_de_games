@@ -18,7 +18,7 @@ const initialState: GamesStates = {
     games: [],
     status: 'idle',
     removingGame: undefined,
-    editingGame: undefined
+    editingGame: undefined,
 }
 
 const gamesSlice = createSlice({
@@ -43,9 +43,11 @@ const gamesSlice = createSlice({
             state.editingGame = action.payload
         },
         editGame: (state, action: PayloadAction<IGame>) => {
-            state.games = state.games.filter((game) => game.id !== action.payload.id)
+            state.games = state.games.filter(
+                (game) => game.id !== action.payload.id,
+            )
             state.games = [...state.games, action.payload]
-        }
+        },
     },
     extraReducers: (builder) => {
         builder
@@ -68,8 +70,14 @@ const gamesSlice = createSlice({
 export const gamesReducer = gamesSlice.reducer
 
 // export das actions
-export const { addGame, removeGame, setRemovingGame, setGames, setEditingGame, editGame } =
-    gamesSlice.actions
+export const {
+    addGame,
+    removeGame,
+    setRemovingGame,
+    setGames,
+    setEditingGame,
+    editGame,
+} = gamesSlice.actions
 
 // export dos states
 export const selectGames = (state: RootState) => state.games.games

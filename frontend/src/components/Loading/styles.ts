@@ -20,7 +20,7 @@ const StyledDiv = styled.div<DivProps>`
             left: 0; `}
     z-index: 14;
     background-color: ${(props) => props.theme.colors.backgroundColor}7f;
-    margin-top: ${(props) => props.$overlay ? '0' : '5rem'};
+    margin-top: ${(props) => (props.$overlay ? '0' : '5rem')};
 
     div {
         border: 8px solid ${(props) => props.theme.colors.borderColor};

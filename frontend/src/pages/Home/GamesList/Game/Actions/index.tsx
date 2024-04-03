@@ -13,11 +13,12 @@ import { MdEdit } from 'react-icons/md'
 import { selectTheme } from '@/app/reducers/app'
 
 // actions
+import { changeModalDisplay, changeModalType } from '@/app/reducers/app'
 import {
-    changeModalDisplay,
-    changeModalType,
-} from '@/app/reducers/app'
-import { selectGames, setRemovingGame, setEditingGame } from '@/app/reducers/games'
+    selectGames,
+    setRemovingGame,
+    setEditingGame,
+} from '@/app/reducers/games'
 
 // variáveis
 import { variables } from '@/variables'
@@ -42,7 +43,7 @@ const Actions = ({ gameId }: ActionsProps) => {
     // handle para abrir o modal de exclusão
     const deleteHandle = () => {
         const removingGame = games.find((game) => game.id === gameId)
-        if(removingGame) {
+        if (removingGame) {
             dispatch(changeModalType('delete'))
             dispatch(setRemovingGame(removingGame))
             dispatch(changeModalDisplay(true))
@@ -52,7 +53,7 @@ const Actions = ({ gameId }: ActionsProps) => {
     // handle para ir à página de edição
     const editHandle = () => {
         const editingGame = games.find((game) => game.id === gameId)
-        if(editingGame) {
+        if (editingGame) {
             dispatch(setEditingGame(editingGame))
             navigate('/editar-jogo')
         }

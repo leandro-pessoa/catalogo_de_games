@@ -54,7 +54,7 @@ const Home = () => {
             <>
                 <Title>Erro no carregamento dos dados.</Title>
                 <Button onClick={() => dispatch(fetchGames())}>
-                    <TbReload size={20}/>
+                    <TbReload size={20} />
                     Recarregar
                 </Button>
             </>

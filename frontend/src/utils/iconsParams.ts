@@ -1,10 +1,10 @@
 // variáveis
-import { variables } from "@/variables"
+import { variables } from '@/variables'
 
 const iconsParams = (theme: string) => {
     return {
         size: 26,
-        color: theme === 'light' ? variables.darkGray : '#fff'
+        color: theme === 'light' ? variables.darkGray : '#fff',
     }
 }
 

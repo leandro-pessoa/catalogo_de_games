@@ -19,7 +19,7 @@ const StyledDiv = styled.div`
     }
     @media (max-width: ${variables.smartphone}) {
         p {
-            font-size: .9rem;
+            font-size: 0.9rem;
         }
     }
 `

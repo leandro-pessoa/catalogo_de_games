@@ -2,7 +2,7 @@
 import { Dispatch, SetStateAction } from 'react'
 
 // componentes
-import StyledUl from "./styles"
+import StyledUl from './styles'
 import Button from '@/components/Button'
 
 // ícones
@@ -17,7 +17,9 @@ interface PlataformsListProps {
 const PlataformsList = ({ plataforms, setPlataforms }: PlataformsListProps) => {
     // handle de remover
     const removeHandle = (ePlataform: string) => {
-        setPlataforms(plataforms.filter((plataform) => plataform !== ePlataform))
+        setPlataforms(
+            plataforms.filter((plataform) => plataform !== ePlataform),
+        )
     }
 
     return (

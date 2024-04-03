@@ -21,7 +21,10 @@ const ThemeButton = () => {
     const theme = useAppSelector(selectTheme)
 
     return (
-        <StyledButton onClick={() => dispatch(toggleTheme())} aria-label='Mudar tema'>
+        <StyledButton
+            onClick={() => dispatch(toggleTheme())}
+            aria-label='Mudar tema'
+        >
             {theme === 'light' ? (
                 <MdOutlineDarkMode {...iconsParams(theme)} />
             ) : (

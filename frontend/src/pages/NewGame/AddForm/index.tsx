@@ -78,7 +78,7 @@ const AddForm = () => {
                 onSubmit={onSubmit}
                 submitText='Adicionar'
                 title='Adicionar jogo'
-                submitIcon={<IoIosAdd {...iconsParams('dark')}/>}
+                submitIcon={<IoIosAdd {...iconsParams('dark')} />}
             >
                 <Input
                     type='text'
@@ -95,7 +95,10 @@ const AddForm = () => {
                     maxLength={15}
                 />
                 <Input type='date' id='date' label='Lançamento' />
-                <Plataforms plataforms={plataforms} setPlataforms={setPlataforms}/>
+                <Plataforms
+                    plataforms={plataforms}
+                    setPlataforms={setPlataforms}
+                />
             </Form>
         </FormProvider>
     )

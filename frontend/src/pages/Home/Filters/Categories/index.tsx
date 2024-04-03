@@ -10,7 +10,11 @@ import Select from '@/components/Select'
 
 // actions e states globais
 import { setGames, selectGames, fetchGames } from '@/app/reducers/games'
-import { selectSearchValue, selectSelectedOpt, setSelectedOpt } from '@/app/reducers/filters'
+import {
+    selectSearchValue,
+    selectSelectedOpt,
+    setSelectedOpt,
+} from '@/app/reducers/filters'
 
 // tipagens externas
 import { IGame } from '@/interfaces/IGame'

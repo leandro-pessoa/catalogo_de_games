@@ -22,7 +22,7 @@ interface ModalProps {
 const Modal = ({ children, action, title }: ModalProps) => {
     // states globais
     const dispatch = useAppDispatch()
-    const modalDisplay = useAppSelector(selectModalDisplay) 
+    const modalDisplay = useAppSelector(selectModalDisplay)
 
     return (
         <StyledDiv $display={modalDisplay}>

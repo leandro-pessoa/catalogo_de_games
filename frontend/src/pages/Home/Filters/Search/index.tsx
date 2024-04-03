@@ -8,7 +8,11 @@ import StyledInput from './styles'
 
 // actions e states globais
 import { setGames } from '@/app/reducers/games'
-import { selectSearchValue, setSearchValue, setSelectedOpt } from '@/app/reducers/filters'
+import {
+    selectSearchValue,
+    setSearchValue,
+    setSelectedOpt,
+} from '@/app/reducers/filters'
 
 const Search = () => {
     // states globais

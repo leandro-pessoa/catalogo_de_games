@@ -12,7 +12,7 @@ const StyledButton = styled.button`
     }
 
     &:active {
-        background-color: ${props => props.theme.colors.borderColor};
+        background-color: ${(props) => props.theme.colors.borderColor};
     }
 `
 

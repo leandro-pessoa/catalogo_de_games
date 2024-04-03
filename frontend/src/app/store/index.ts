@@ -8,7 +8,7 @@ export const store = configureStore({
     reducer: {
         app: appReducer,
         games: gamesReducer,
-        filters: filtersReducer
+        filters: filtersReducer,
     },
 })
 

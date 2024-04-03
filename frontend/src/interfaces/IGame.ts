@@ -1,4 +1,3 @@
-
 export interface IGame {
     _id?: string
     id: string

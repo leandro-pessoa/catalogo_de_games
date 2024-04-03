@@ -21,9 +21,16 @@ interface FormProps {
     submitIcon: React.ReactElement
 }
 
-const Form = ({ onSubmit, submitText, children, isLoading, title, submitIcon }: FormProps) => {
+const Form = ({
+    onSubmit,
+    submitText,
+    children,
+    isLoading,
+    title,
+    submitIcon,
+}: FormProps) => {
     return (
-        <>  
+        <>
             <Title>{title}</Title>
             <StyledForm onSubmit={(e) => e.preventDefault()}>
                 {children}

@@ -2,7 +2,7 @@ import { toast } from 'react-toastify'
 
 const error = (msg: string) => {
     return toast.error(msg, {
-        toastId: 0
+        toastId: 0,
     })
 }
 
