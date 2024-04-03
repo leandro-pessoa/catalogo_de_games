@@ -24,20 +24,6 @@ Dentre as funcionalidades estão:
 
 Para realizar o download do projeto, clique no botão verde escrito "Code" e, depois, em "Download ZIP"
 
-## 🛠️ Executando o projeto
-
-Para executar o projeto, realize os seguintes passos:
-
-- Abra a pasta "frontend" no terminal e rode o comando:
-  ~~~~
-  npm run dev
-  ~~~~
-- Abra a pasta "backend" no terminal e rode o comando:
-  ~~~~
-  npm run dev
-  ~~~~
-- Abra a URL especificada no terminal "frontend" no seu navegador.
-
 ## ⚛️ Tecnologias utilizadas
 
 As principais tecnologias utilizadas foram:
