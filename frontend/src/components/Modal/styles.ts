@@ -55,6 +55,18 @@ const StyledDiv = styled.div<DivProps>`
             margin-top: 1rem;
         }
     }
+
+    @media (max-width: ${variables.smartphone}) {
+        h2 {
+            font-size: 1.2rem;
+        }
+        .modal__container {
+            padding: 1.5rem;
+            .modal__content {
+                font-size: 0.9rem;
+            }
+        }
+    }
 `
 
 export { StyledDiv }

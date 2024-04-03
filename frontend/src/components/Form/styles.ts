@@ -43,7 +43,8 @@ const StyledForm = styled.form`
     @media (max-width: ${variables.smartphone}) {
         ${flex('column', 'center', 'stretch', '1.5rem')}
         margin-bottom: 4rem;
-        width: 70%;
+        width: 80%;
+        padding: 1.5rem;
 
         label {
             font-size: 1rem;

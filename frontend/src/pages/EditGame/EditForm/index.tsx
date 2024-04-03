@@ -74,6 +74,7 @@ const EditForm = () => {
                     clearAll()
                     dispatch(setEditingGame(undefined))
                     navigate('/')
+                    methods.reset()
                 })
                 .catch((err) => {
                     if (err.response) {

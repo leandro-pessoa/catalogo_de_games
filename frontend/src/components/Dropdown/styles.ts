@@ -20,7 +20,7 @@ const StyledDiv = styled.div`
         }
 
         ul {
-            ${flex('column', 'center', 'center')}
+            ${flex('column', 'auto', 'center')}
             position: absolute;
             top: 110%;
             background-color: ${(props) => props.theme.colors.borderColor};
@@ -29,6 +29,8 @@ const StyledDiv = styled.div`
             z-index: 10;
             cursor: auto;
             padding: 0 0.4rem;
+            max-height: 150px;
+            overflow-y: auto;
 
             li {
                 padding: 0.5rem 0;

@@ -19,7 +19,6 @@ const StyledH2 = styled.h2`
     }
     @media (max-width: ${variables.smartphone}) {
         font-size: 1.1rem;
-        margin-top: 5rem;
     }
 `
 
